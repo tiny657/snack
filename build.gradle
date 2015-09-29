@@ -20,7 +20,7 @@ apply plugin: 'propdeps-idea'
 apply plugin: 'propdeps-eclipse'
 
 jar {
-    baseName = 'hajiboot-flyway'
+    baseName = 'snack'
     version =  '1.0.0-SNAPSHOT'
 }
 
