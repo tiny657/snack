@@ -30,8 +30,6 @@ export.sql
 .yardoc
 .yardopts
 test-output
-Scratch.java
-ScratchTest.java
 test-results
 test-tmp
 *.class
