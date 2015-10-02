@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("customers")
+@RequestMapping("/")
 public class CustomerController {
 	@Autowired
 	CustomerService customerService;
@@ -29,7 +29,7 @@ public class CustomerController {
 		List<Customer> customers = customerService.findAll();
 		model.addAttribute("customers", customers);
 		//        return "customers/list";
-		return "hello";
+		return "list";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST) String create(@Validated CustomerForm form, BindingResult result, Model model) {

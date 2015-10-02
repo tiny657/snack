@@ -1,0 +1,19 @@
+{{# partial "content" }}
+	<ul>
+	{{#each customers}}
+		<li>{{this}}</li>
+	{{/each}}
+	</ul>
+{{/partial}}
+
+{{# partial "page_script" }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+        });
+    </script>
+{{/partial}}
+
+{{>layout}}
+
+
+
