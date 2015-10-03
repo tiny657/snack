@@ -5,5 +5,4 @@ spring:
     username: sa
     password:
   jpa:
-    hibernate.ddl-auto: validate # (2)
-  thymeleaf.cache: false
+    hibernate.ddl-auto: create # (2)
