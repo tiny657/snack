@@ -1,7 +1,7 @@
-package com.example.web;
+package com.snack.web;
 
-import com.example.domain.Customer;
-import com.example.service.CustomerService;
+import com.snack.domain.Customer;
+import com.snack.service.CustomerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.snack.repository;
 
-import com.example.domain.Customer;
+import com.snack.domain.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

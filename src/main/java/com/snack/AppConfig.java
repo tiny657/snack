@@ -1,4 +1,4 @@
-package com.example;
+package com.snack;
 
 import net.sf.log4jdbc.Log4jdbcProxyDataSource;
 import org.springframework.beans.factory.annotation.Autowired;

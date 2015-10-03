@@ -1,4 +1,4 @@
-package com.example.web;
+package com.snack.web;
 
 import lombok.Data;
 
