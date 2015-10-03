@@ -5,4 +5,4 @@ spring:
     username: sa
     password:
   jpa:
-    hibernate.ddl-auto: create # (2)
+    hibernate.ddl-auto: validate # (2)
