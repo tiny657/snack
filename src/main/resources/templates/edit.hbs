@@ -1,10 +1,8 @@
 {{# partial "content" }}
-	<ul>
-	{{#each documents}}
-		<li>{{this}}</li>
-		<li>{{content}}</li>
-	{{/each}}
-	</ul>
+	<form id="documentForm" name="documentForm">
+		<input type="text" id="content" name="content" />
+		<input type="submit">
+	</form>
 {{/partial}}
 
 {{# partial "page_script" }}

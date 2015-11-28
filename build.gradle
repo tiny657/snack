@@ -33,7 +33,7 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("pl.allegro.tech.boot:spring-boot-starter-handlebars:0.1.1")
+    compile("pl.allegro.tech.boot:handlebars-spring-boot-starter:0.2.4")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.webjars:bootstrap:3.3.4")
     compile("com.h2database:h2")
