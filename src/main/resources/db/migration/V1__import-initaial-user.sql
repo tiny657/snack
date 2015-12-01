@@ -1,0 +1,1 @@
+create table user (user_id varchar(255) not null, comment_count integer, document_count integer, level integer, like_count integer, name varchar(255), point integer, reg_date timestamp, primary key (user_id));

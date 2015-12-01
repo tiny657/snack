@@ -1,8 +1,9 @@
 spring:
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:file:/tmp/snack
-    username: sa
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/test
+    username: root
     password:
   jpa:
-    hibernate.ddl-auto: create
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate.ddl-auto: validate

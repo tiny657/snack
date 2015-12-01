@@ -42,6 +42,11 @@ public class DocumentController {
 		return "redirect:/";
 	}
 
+	@RequestMapping(value = "new", params = "form", method = RequestMethod.GET)
+	String createForm(DocumentForm form) {
+		return "edit";
+	}
+
 	@RequestMapping(value = "edit", params = "form", method = RequestMethod.GET)
 	String editForm(@RequestParam Integer id, DocumentForm form) {
 		Document document = documentService.findOne(id);
