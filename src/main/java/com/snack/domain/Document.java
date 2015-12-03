@@ -1,22 +1,24 @@
 package com.snack.domain;
 
 import com.google.common.collect.Lists;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Document {
 	@Id
 	@GeneratedValue
-	@Column(name = "DOCUMENT_ID")
+	@Column(name = "document_id")
 	private Integer id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)

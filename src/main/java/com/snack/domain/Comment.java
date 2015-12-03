@@ -1,24 +1,26 @@
 package com.snack.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Comment {
 	@Id
 	@GeneratedValue
-	@Column(name = "COMMENT_ID")
+	@Column(name = "comment_id")
 	private Integer id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DOCUMENT_ID")
+	@JoinColumn(name = "document_id")
 	private Document document;
 
 	private String content;

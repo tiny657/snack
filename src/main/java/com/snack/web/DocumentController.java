@@ -25,7 +25,8 @@ public class DocumentController {
 		return new CustomerForm();
 	}
 
-	@RequestMapping(method = RequestMethod.GET) String list(Model model) {
+	@RequestMapping(method = RequestMethod.GET)
+	String list(Model model) {
 		List<Document> documents = documentService.findAll();
 		model.addAttribute("documents", documents);
 		return "list";
