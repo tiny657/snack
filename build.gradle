@@ -38,13 +38,14 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("pl.allegro.tech.boot:handlebars-spring-boot-starter:0.2.4")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("pl.allegro.tech.boot:handlebars-spring-boot-starter:0.2.4")
     compile("mysql:mysql-connector-java:5.1.34")
     compile("org.webjars:bootstrap:3.3.4")
-//    compile("com.h2database:h2")
     provided("org.projectlombok:lombok:1.16.4")
-    compile("org.lazyluke:log4jdbc-remix:0.2.7")
+    compile("org.lazyluke:log4jdbc-remix:0.2.7") {
+        exclude module: 'junit'
+    }
 //    compile("org.flywaydb:flyway-core")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
