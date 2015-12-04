@@ -2,7 +2,17 @@
 	<ul>
 	{{#each documents}}
 		<li>{{this}}</li>
+		<li>{{title}}</li>
 		<li>{{content}}</li>
+		<li>{{commentCount}}</li>
+		<li>{{likerCount}}</li>
+		<li>{{postDate}}</li>
+		<li>{{author.name}}</li>
+		{{#each comments}}
+			<li>{{content}}</li>
+			<li>{{writer.name}}</li>
+			<li>{{regDate}}</li>
+		{{/each}}
 	{{/each}}
 	</ul>
 {{/partial}}
