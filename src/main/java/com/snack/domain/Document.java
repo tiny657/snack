@@ -19,16 +19,24 @@ public class Document {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User user;
+	private User author;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
 	private List<Comment> comments = Lists.newArrayList();
 
+	private Integer commentCount;
+
+	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
+	private List<DocumentLiker> likers = Lists.newArrayList();
+
+	private Integer likerCount;
+
 	private String title;
 	private String content;
-	private Integer savedCount;
-	private Integer likeCount;
-	private Integer commentCount;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date postDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
 }

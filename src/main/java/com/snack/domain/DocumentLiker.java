@@ -9,21 +9,18 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class Comment {
+public class DocumentLiker {
 	@Id
 	@GeneratedValue
-	@Column(name = "comment_id")
 	private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User writer;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "document_id")
 	private Document document;
 
-	private String content;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User liker;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;

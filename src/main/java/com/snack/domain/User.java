@@ -19,14 +19,22 @@ public class User {
 	private String name;
 	private Integer level;
 	private Integer point;
+
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+	private List<Document> myDocuments = Lists.newArrayList();
+
 	private Integer documentCount;
-	private Integer commentCount;
-	private Integer likeCount;
-	private Date regDate;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Document> documents = Lists.newArrayList();
-
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
 	private List<Comment> comments = Lists.newArrayList();
+
+	private Integer commentCount;
+
+	@OneToMany(mappedBy = "liker", cascade = CascadeType.ALL)
+	private List<DocumentLiker> likeDocuments = Lists.newArrayList();
+
+	private Integer likeCount;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date regDate;
 }
