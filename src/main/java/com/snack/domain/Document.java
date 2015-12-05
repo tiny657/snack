@@ -17,6 +17,15 @@ public class Document {
 	@Column(name = "document_id")
 	private Integer id;
 
+	private String title;
+	private String content;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date postDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifiedDate;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User author;
@@ -31,12 +40,8 @@ public class Document {
 
 	private Integer likerCount;
 
-	private String title;
-	private String content;
+	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
+	private List<DocumentTag> documentTags = Lists.newArrayList();
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date postDate;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date modifiedDate;
+	private Integer tagCount;
 }

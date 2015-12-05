@@ -1,10 +1,7 @@
 package com.snack.repository;
 
 import com.snack.App;
-import com.snack.domain.Comment;
-import com.snack.domain.Document;
-import com.snack.domain.DocumentLiker;
-import com.snack.domain.User;
+import com.snack.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +27,18 @@ public class InitializeRepositoryTest {
 	@Autowired
 	DocumentLikerRepository documentLikerRepository;
 
+	@Autowired
+	TagRepository tagRepository;
+
+	@Autowired
+	DocumentTagRepository documentTagRepository;
+
 	User user1, user2, user3, user4;
 	Document document1, document2;
 	Comment comment1, comment2;
 	DocumentLiker documentLiker1, documentLiker2, documentLiker3, documentLiker4;
-
+	Tag tag1, tag2;
+	DocumentTag documentTag1, documentTag2;
 
 	@Test
 	@Rollback(false)
@@ -43,6 +47,8 @@ public class InitializeRepositoryTest {
 		documentRepository.deleteAll();
 		commentRepository.deleteAll();
 		documentLikerRepository.deleteAll();
+		tagRepository.deleteAll();
+		documentTagRepository.deleteAll();
 	}
 
 	@Test
@@ -60,6 +66,10 @@ public class InitializeRepositoryTest {
 		createDocumentLiker2();
 		createDocumentLiker3();
 		createDocumentLiker4();
+		createTag1();
+		createTag2();
+		createDocumentTag1();
+		createDocumentTag2();
 	}
 
 	@Test
@@ -155,7 +165,7 @@ public class InitializeRepositoryTest {
 		DocumentLiker documentLiker = new DocumentLiker();
 		documentLiker.setDocument(document1);
 		documentLiker.setLiker(user1);
-		documentLiker1 = documentLikerRepository.save(documentLiker1);
+		documentLiker1 = documentLikerRepository.save(documentLiker);
 	}
 
 	@Test
@@ -163,7 +173,7 @@ public class InitializeRepositoryTest {
 		DocumentLiker documentLiker = new DocumentLiker();
 		documentLiker.setDocument(document1);
 		documentLiker.setLiker(user2);
-		documentLiker2 = documentLikerRepository.save(documentLiker2);
+		documentLiker2 = documentLikerRepository.save(documentLiker);
 	}
 
 	@Test
@@ -171,7 +181,7 @@ public class InitializeRepositoryTest {
 		DocumentLiker documentLiker = new DocumentLiker();
 		documentLiker.setDocument(document2);
 		documentLiker.setLiker(user1);
-		documentLiker3 = documentLikerRepository.save(documentLiker3);
+		documentLiker3 = documentLikerRepository.save(documentLiker);
 	}
 
 	@Test
@@ -179,6 +189,36 @@ public class InitializeRepositoryTest {
 		DocumentLiker documentLiker = new DocumentLiker();
 		documentLiker.setDocument(document2);
 		documentLiker.setLiker(user3);
-		documentLiker4 = documentLikerRepository.save(documentLiker4);
+		documentLiker4 = documentLikerRepository.save(documentLiker);
+	}
+
+	@Test
+	public void createTag1() {
+		Tag tag = new Tag();
+		tag.setName("tag1");
+		tag1 = tagRepository.save(tag);
+	}
+
+	@Test
+	public void createTag2() {
+		Tag tag = new Tag();
+		tag.setName("tag2");
+		tag2 = tagRepository.save(tag);
+	}
+
+	@Test
+	public void createDocumentTag1() {
+		DocumentTag documentTag = new DocumentTag();
+		documentTag.setDocument(document1);
+		documentTag.setTag(tag1);
+		documentTag1 = documentTagRepository.save(documentTag);
+	}
+
+	@Test
+	public void createDocumentTag2() {
+		DocumentTag documentTag = new DocumentTag();
+		documentTag.setDocument(document1);
+		documentTag.setTag(tag2);
+		documentTag2 = documentTagRepository.save(documentTag);
 	}
 }
