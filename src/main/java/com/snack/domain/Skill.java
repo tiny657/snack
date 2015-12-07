@@ -18,7 +18,7 @@ public class Skill {
 	private String name;
 
 	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
-	private List<DocumentSkill> documentSkills;
+	private List<DocumentSkill> documents;
 
 	private Integer documentCount;
 

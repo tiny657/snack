@@ -23,22 +23,22 @@ public class User {
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Document> myDocuments = Lists.newArrayList();
 
-	private Integer documentCount;
+	private Integer myDocumentCount;
 
 	@OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
-	private List<Comment> comments = Lists.newArrayList();
+	private List<Comment> myComments = Lists.newArrayList();
 
-	private Integer commentCount;
+	private Integer myCommentCount;
 
 	@OneToMany(mappedBy = "keeper", cascade = CascadeType.ALL)
-	private List<DocumentKeeper> documentKeepers = Lists.newArrayList();
+	private List<DocumentKeeper> myKeptDocuments = Lists.newArrayList();
 
-	private Integer keepCount;
+	private Integer myKeepCount;
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private List<SkillOwner> skillOwners = Lists.newArrayList();
+	private List<SkillOwner> mySkills = Lists.newArrayList();
 
-	private Integer skillOwnerCount;
+	private Integer mySkillCount;
 
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
 	private List<Notification> notifications = Lists.newArrayList();

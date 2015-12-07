@@ -38,12 +38,12 @@ public class Document {
 	private Integer commentCount;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-	private List<DocumentKeeper> keeper = Lists.newArrayList();
+	private List<DocumentKeeper> keepers = Lists.newArrayList();
 
 	private Integer keeperCount;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-	private List<DocumentSkill> documentSkills = Lists.newArrayList();
+	private List<DocumentSkill> skills = Lists.newArrayList();
 
 	private Integer skillCount;
 }

@@ -77,8 +77,8 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId1");
 		user.setName("name1");
-		user.setCommentCount(1);
-		user.setKeepCount(3);
+		user.setMyCommentCount(1);
+		user.setMyKeepCount(3);
 		user1 = userRepository.save(user);
 	}
 
@@ -87,8 +87,8 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId2");
 		user.setName("name2");
-		user.setCommentCount(1);
-		user.setKeepCount(3);
+		user.setMyCommentCount(1);
+		user.setMyKeepCount(3);
 		user2 = userRepository.save(user);
 	}
 
@@ -97,8 +97,8 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId3");
 		user.setName("name3");
-		user.setCommentCount(1);
-		user.setKeepCount(3);
+		user.setMyCommentCount(1);
+		user.setMyKeepCount(3);
 		user3 = userRepository.save(user);
 	}
 
@@ -107,8 +107,8 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId4");
 		user.setName("name4");
-		user.setCommentCount(1);
-		user.setKeepCount(3);
+		user.setMyCommentCount(1);
+		user.setMyKeepCount(3);
 		user4 = userRepository.save(user);
 	}
 
