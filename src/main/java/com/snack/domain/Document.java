@@ -36,9 +36,9 @@ public class Document {
 	private Integer commentCount;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-	private List<DocumentLiker> likers = Lists.newArrayList();
+	private List<DocumentKeeper> keeper = Lists.newArrayList();
 
-	private Integer likerCount;
+	private Integer keeperCount;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
 	private List<DocumentTag> documentTags = Lists.newArrayList();

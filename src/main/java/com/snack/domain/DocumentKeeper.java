@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class DocumentLiker {
+public class DocumentKeeper {
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -20,7 +20,7 @@ public class DocumentLiker {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User liker;
+	private User keeper;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;

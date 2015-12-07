@@ -17,8 +17,6 @@ public class User {
 	private String userId;
 
 	private String name;
-	private Integer level;
-	private Integer point;
 
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Document> myDocuments = Lists.newArrayList();
@@ -30,10 +28,10 @@ public class User {
 
 	private Integer commentCount;
 
-	@OneToMany(mappedBy = "liker", cascade = CascadeType.ALL)
-	private List<DocumentLiker> likeDocuments = Lists.newArrayList();
+	@OneToMany(mappedBy = "keeper", cascade = CascadeType.ALL)
+	private List<DocumentKeeper> documentKeepers = Lists.newArrayList();
 
-	private Integer likeCount;
+	private Integer keepCount;
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<TagOwner> tagOwners = Lists.newArrayList();

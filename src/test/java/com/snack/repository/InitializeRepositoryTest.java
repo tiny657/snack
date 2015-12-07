@@ -25,7 +25,7 @@ public class InitializeRepositoryTest {
 	CommentRepository commentRepository;
 
 	@Autowired
-	DocumentLikerRepository documentLikerRepository;
+	DocumentKeeperRepository documentKeeperRepository;
 
 	@Autowired
 	TagRepository tagRepository;
@@ -36,7 +36,7 @@ public class InitializeRepositoryTest {
 	User user1, user2, user3, user4;
 	Document document1, document2;
 	Comment comment1, comment2;
-	DocumentLiker documentLiker1, documentLiker2, documentLiker3, documentLiker4;
+	DocumentKeeper documentKeeper1, documentKeeper2, documentKeeper3, documentKeeper4;
 	Tag tag1, tag2;
 	DocumentTag documentTag1, documentTag2;
 
@@ -46,7 +46,7 @@ public class InitializeRepositoryTest {
 		userRepository.deleteAll();
 		documentRepository.deleteAll();
 		commentRepository.deleteAll();
-		documentLikerRepository.deleteAll();
+		documentKeeperRepository.deleteAll();
 		tagRepository.deleteAll();
 		documentTagRepository.deleteAll();
 	}
@@ -62,10 +62,10 @@ public class InitializeRepositoryTest {
 		createDocument2();
 		createComment1();
 		createComment2();
-		createDocumentLiker1();
-		createDocumentLiker2();
-		createDocumentLiker3();
-		createDocumentLiker4();
+		createDocumentKeeper1();
+		createDocumentKeeper2();
+		createDocumentKeeper3();
+		createDocumentKeeper4();
 		createTag1();
 		createTag2();
 		createDocumentTag1();
@@ -78,9 +78,7 @@ public class InitializeRepositoryTest {
 		user.setUserId("userId1");
 		user.setName("name1");
 		user.setCommentCount(1);
-		user.setLevel(2);
-		user.setLikeCount(3);
-		user.setPoint(4);
+		user.setKeepCount(3);
 		user1 = userRepository.save(user);
 	}
 
@@ -90,9 +88,7 @@ public class InitializeRepositoryTest {
 		user.setUserId("userId2");
 		user.setName("name2");
 		user.setCommentCount(1);
-		user.setLevel(2);
-		user.setLikeCount(3);
-		user.setPoint(4);
+		user.setKeepCount(3);
 		user2 = userRepository.save(user);
 	}
 
@@ -102,9 +98,7 @@ public class InitializeRepositoryTest {
 		user.setUserId("userId3");
 		user.setName("name3");
 		user.setCommentCount(1);
-		user.setLevel(2);
-		user.setLikeCount(3);
-		user.setPoint(4);
+		user.setKeepCount(3);
 		user3 = userRepository.save(user);
 	}
 
@@ -114,9 +108,7 @@ public class InitializeRepositoryTest {
 		user.setUserId("userId4");
 		user.setName("name4");
 		user.setCommentCount(1);
-		user.setLevel(2);
-		user.setLikeCount(3);
-		user.setPoint(4);
+		user.setKeepCount(3);
 		user4 = userRepository.save(user);
 	}
 
@@ -126,7 +118,7 @@ public class InitializeRepositoryTest {
 		document.setCommentCount(1);
 		document.setAuthor(user1);
 		document.setContent("content1");
-		document.setLikerCount(2);
+		document.setKeeperCount(2);
 		document.setTitle("title1");
 		document1 = documentRepository.save(document);
 	}
@@ -137,7 +129,7 @@ public class InitializeRepositoryTest {
 		document.setCommentCount(1);
 		document.setAuthor(user1);
 		document.setContent("content2");
-		document.setLikerCount(2);
+		document.setKeeperCount(2);
 		document.setTitle("title2");
 		document2 = documentRepository.save(document);
 	}
@@ -161,35 +153,35 @@ public class InitializeRepositoryTest {
 	}
 
 	@Test
-	public void createDocumentLiker1() {
-		DocumentLiker documentLiker = new DocumentLiker();
-		documentLiker.setDocument(document1);
-		documentLiker.setLiker(user1);
-		documentLiker1 = documentLikerRepository.save(documentLiker);
+	public void createDocumentKeeper1() {
+		DocumentKeeper documentKeeper = new DocumentKeeper();
+		documentKeeper.setDocument(document1);
+		documentKeeper.setKeeper(user1);
+		documentKeeper1 = documentKeeperRepository.save(documentKeeper);
 	}
 
 	@Test
-	public void createDocumentLiker2() {
-		DocumentLiker documentLiker = new DocumentLiker();
-		documentLiker.setDocument(document1);
-		documentLiker.setLiker(user2);
-		documentLiker2 = documentLikerRepository.save(documentLiker);
+	public void createDocumentKeeper2() {
+		DocumentKeeper documentKeeper = new DocumentKeeper();
+		documentKeeper.setDocument(document1);
+		documentKeeper.setKeeper(user2);
+		documentKeeper2 = documentKeeperRepository.save(documentKeeper);
 	}
 
 	@Test
-	public void createDocumentLiker3() {
-		DocumentLiker documentLiker = new DocumentLiker();
-		documentLiker.setDocument(document2);
-		documentLiker.setLiker(user1);
-		documentLiker3 = documentLikerRepository.save(documentLiker);
+	public void createDocumentKeeper3() {
+		DocumentKeeper documentKeeper = new DocumentKeeper();
+		documentKeeper.setDocument(document2);
+		documentKeeper.setKeeper(user1);
+		documentKeeper3 = documentKeeperRepository.save(documentKeeper);
 	}
 
 	@Test
-	public void createDocumentLiker4() {
-		DocumentLiker documentLiker = new DocumentLiker();
-		documentLiker.setDocument(document2);
-		documentLiker.setLiker(user3);
-		documentLiker4 = documentLikerRepository.save(documentLiker);
+	public void createDocumentKeeper4() {
+		DocumentKeeper documentKeeper = new DocumentKeeper();
+		documentKeeper.setDocument(document2);
+		documentKeeper.setKeeper(user3);
+		documentKeeper4 = documentKeeperRepository.save(documentKeeper);
 	}
 
 	@Test
