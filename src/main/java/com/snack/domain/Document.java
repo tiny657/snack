@@ -23,10 +23,10 @@ public class Document {
 	private String content;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date postDate;
+	private Date regDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date modifiedDate;
+	private Date editDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")

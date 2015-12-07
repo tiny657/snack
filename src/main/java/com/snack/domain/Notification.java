@@ -11,18 +11,18 @@ import java.util.Date;
 @Entity
 public class Notification {
 	@Id
-	@Column(name = "notification_id")
-	private String id;
+	@GeneratedValue
+	private Integer id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User receiver;
 
 	private String message;
 
-	private Boolean read;
+	private Boolean see;
 
-	private Boolean delete;
+	private Boolean deleted;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;

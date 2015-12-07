@@ -28,17 +28,33 @@ public class InitializeRepositoryTest {
 	DocumentKeeperRepository documentKeeperRepository;
 
 	@Autowired
+	NotificationRepository notificationRepository;
+
+	@Autowired
 	SkillRepository skillRepository;
 
 	@Autowired
+	SkillOwnerRepository skillOwnerRepository;
+
+	@Autowired
+	SkillOwnerHistoryRepository skillOwnerHistoryRepository;
+
+	@Autowired
 	DocumentSkillRepository documentSkillRepository;
+
+	@Autowired
+	DocumentSkillHistoryRepository documentSkillHistoryRepository;
 
 	User user1, user2, user3, user4;
 	Document document1, document2;
 	Comment comment1, comment2;
 	DocumentKeeper documentKeeper1, documentKeeper2, documentKeeper3, documentKeeper4;
+	Notification notification1, notification2;
 	Skill skill1, skill2;
+	SkillOwner skillOwner1, skillOwner2;
+	SkillOwnerHistory skillOwnerHistory1, skillOwnerHistory2;
 	DocumentSkill documentSkill1, documentSkill2;
+	DocumentSkillHistory documentSkillHistory1, documentSkillHistory2;
 
 	@Test
 	@Rollback(false)
@@ -47,8 +63,12 @@ public class InitializeRepositoryTest {
 		documentRepository.deleteAll();
 		commentRepository.deleteAll();
 		documentKeeperRepository.deleteAll();
+		notificationRepository.deleteAll();
 		skillRepository.deleteAll();
+		skillOwnerRepository.deleteAll();
+		skillOwnerHistoryRepository.deleteAll();
 		documentSkillRepository.deleteAll();
+		documentSkillHistoryRepository.deleteAll();
 	}
 
 	@Test
@@ -58,6 +78,8 @@ public class InitializeRepositoryTest {
 		createUser2();
 		createUser3();
 		createUser4();
+		createNotification1();
+		createNotification2();
 		createDocument1();
 		createDocument2();
 		createComment1();
@@ -68,6 +90,7 @@ public class InitializeRepositoryTest {
 		createDocumentKeeper4();
 		createSkill1();
 		createSkill2();
+		createSkillOwner1();
 		createDocumentSkill1();
 		createDocumentSkill2();
 	}
@@ -110,6 +133,24 @@ public class InitializeRepositoryTest {
 		user.setMyCommentCount(1);
 		user.setMyKeepCount(3);
 		user4 = userRepository.save(user);
+	}
+
+	@Test
+	public void createNotification1() {
+		Notification notification = new Notification();
+		notification.setMessage("noti1");
+		notification.setReceiver(user1);
+		notification.setSee(false);
+		notification1 = notificationRepository.save(notification);
+	}
+
+	@Test
+	public void createNotification2() {
+		Notification notification = new Notification();
+		notification.setMessage("noti2");
+		notification.setReceiver(user1);
+		notification.setSee(false);
+		notification2 = notificationRepository.save(notification);
 	}
 
 	@Test
@@ -189,6 +230,26 @@ public class InitializeRepositoryTest {
 		Skill skill = new Skill();
 		skill.setName("skill1");
 		skill1 = skillRepository.save(skill);
+	}
+
+	@Test
+	public void createSkillOwner1() {
+		SkillOwner skillOwner = new SkillOwner();
+		skillOwner.setSkill(skill1);
+		skillOwner.setOwner(user1);
+		skillOwner.setPreRank(1);
+		skillOwner.setRank(2);
+		skillOwner1 = skillOwnerRepository.save(skillOwner);
+	}
+
+	@Test
+	public void createSkillOwner2() {
+		SkillOwner skillOwner = new SkillOwner();
+		skillOwner.setSkill(skill2);
+		skillOwner.setOwner(user1);
+		skillOwner.setPreRank(1);
+		skillOwner.setRank(2);
+		skillOwner2 = skillOwnerRepository.save(skillOwner);
 	}
 
 	@Test
