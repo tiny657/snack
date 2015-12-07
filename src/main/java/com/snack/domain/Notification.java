@@ -22,6 +22,8 @@ public class Notification {
 
 	private Boolean read;
 
+	private Boolean delete;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 }

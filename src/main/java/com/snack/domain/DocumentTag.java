@@ -11,7 +11,6 @@ import javax.persistence.*;
 public class DocumentTag {
 	@Id
 	@GeneratedValue
-	@Column(name = "document_tag_id")
 	private Integer id;
 
 	@ManyToOne
@@ -21,4 +20,6 @@ public class DocumentTag {
 	@ManyToOne
 	@JoinColumn(name = "tag_id")
 	private Tag tag;
+
+	private Boolean self;
 }

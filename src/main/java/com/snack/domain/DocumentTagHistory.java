@@ -9,21 +9,21 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class Comment {
+public class DocumentTagHistory {
 	@Id
 	@GeneratedValue
 	private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User writer;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "document_id")
 	private Document document;
 
-	private String content;
+	@ManyToOne
+	@JoinColumn(name = "tag_id")
+	private Tag tag;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
+
+	private Boolean self;
 }
