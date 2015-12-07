@@ -17,6 +17,8 @@ public class Document {
 	@Column(name = "document_id")
 	private Integer id;
 
+	private Integer point;
+
 	private String title;
 	private String content;
 
@@ -41,7 +43,7 @@ public class Document {
 	private Integer keeperCount;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-	private List<DocumentTag> documentTags = Lists.newArrayList();
+	private List<DocumentSkill> documentSkills = Lists.newArrayList();
 
-	private Integer tagCount;
+	private Integer skillCount;
 }

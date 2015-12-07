@@ -9,16 +9,18 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Tag {
+public class Skill {
 	@Id
 	@GeneratedValue
-	@Column(name = "tag_id")
+	@Column(name = "skill_id")
 	private Integer id;
 
 	private String name;
 
-	@OneToMany(mappedBy = "tag", cascade = CascadeType.ALL)
-	private List<DocumentTag> documentTags;
+	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
+	private List<DocumentSkill> documentSkills;
 
 	private Integer documentCount;
+
+	private Integer point;
 }

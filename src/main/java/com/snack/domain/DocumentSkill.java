@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class DocumentTag {
+public class DocumentSkill {
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -18,8 +18,8 @@ public class DocumentTag {
 	private Document document;
 
 	@ManyToOne
-	@JoinColumn(name = "tag_id")
-	private Tag tag;
+	@JoinColumn(name = "skill_id")
+	private Skill skill;
 
 	private Boolean self;
 }

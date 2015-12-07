@@ -9,19 +9,20 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class TagOwnerHistory {
+public class SkillOwner {
 	@Id
 	@GeneratedValue
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "tag_id")
-	private Tag tag;
+	@JoinColumn(name = "skill_id")
+	private Skill skill;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User owner;
 
+	private Integer preRank;
 	private Integer rank;
 
 	@Temporal(TemporalType.TIMESTAMP)

@@ -18,6 +18,8 @@ public class User {
 
 	private String name;
 
+	private Integer point;
+
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Document> myDocuments = Lists.newArrayList();
 
@@ -34,13 +36,15 @@ public class User {
 	private Integer keepCount;
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private List<TagOwner> tagOwners = Lists.newArrayList();
+	private List<SkillOwner> skillOwners = Lists.newArrayList();
 
-	private Integer tagOwnerCount;
+	private Integer skillOwnerCount;
 
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
 	private List<Notification> notifications = Lists.newArrayList();
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
+
+	private Boolean admin;
 }

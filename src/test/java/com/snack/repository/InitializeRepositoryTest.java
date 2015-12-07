@@ -28,17 +28,17 @@ public class InitializeRepositoryTest {
 	DocumentKeeperRepository documentKeeperRepository;
 
 	@Autowired
-	TagRepository tagRepository;
+	SkillRepository skillRepository;
 
 	@Autowired
-	DocumentTagRepository documentTagRepository;
+	DocumentSkillRepository documentSkillRepository;
 
 	User user1, user2, user3, user4;
 	Document document1, document2;
 	Comment comment1, comment2;
 	DocumentKeeper documentKeeper1, documentKeeper2, documentKeeper3, documentKeeper4;
-	Tag tag1, tag2;
-	DocumentTag documentTag1, documentTag2;
+	Skill skill1, skill2;
+	DocumentSkill documentSkill1, documentSkill2;
 
 	@Test
 	@Rollback(false)
@@ -47,8 +47,8 @@ public class InitializeRepositoryTest {
 		documentRepository.deleteAll();
 		commentRepository.deleteAll();
 		documentKeeperRepository.deleteAll();
-		tagRepository.deleteAll();
-		documentTagRepository.deleteAll();
+		skillRepository.deleteAll();
+		documentSkillRepository.deleteAll();
 	}
 
 	@Test
@@ -66,10 +66,10 @@ public class InitializeRepositoryTest {
 		createDocumentKeeper2();
 		createDocumentKeeper3();
 		createDocumentKeeper4();
-		createTag1();
-		createTag2();
-		createDocumentTag1();
-		createDocumentTag2();
+		createSkill1();
+		createSkill2();
+		createDocumentSkill1();
+		createDocumentSkill2();
 	}
 
 	@Test
@@ -185,32 +185,32 @@ public class InitializeRepositoryTest {
 	}
 
 	@Test
-	public void createTag1() {
-		Tag tag = new Tag();
-		tag.setName("tag1");
-		tag1 = tagRepository.save(tag);
+	public void createSkill1() {
+		Skill skill = new Skill();
+		skill.setName("skill1");
+		skill1 = skillRepository.save(skill);
 	}
 
 	@Test
-	public void createTag2() {
-		Tag tag = new Tag();
-		tag.setName("tag2");
-		tag2 = tagRepository.save(tag);
+	public void createSkill2() {
+		Skill skill = new Skill();
+		skill.setName("skill2");
+		skill2 = skillRepository.save(skill);
 	}
 
 	@Test
-	public void createDocumentTag1() {
-		DocumentTag documentTag = new DocumentTag();
-		documentTag.setDocument(document1);
-		documentTag.setTag(tag1);
-		documentTag1 = documentTagRepository.save(documentTag);
+	public void createDocumentSkill1() {
+		DocumentSkill documentSkill = new DocumentSkill();
+		documentSkill.setDocument(document1);
+		documentSkill.setSkill(skill1);
+		documentSkill1 = documentSkillRepository.save(documentSkill);
 	}
 
 	@Test
-	public void createDocumentTag2() {
-		DocumentTag documentTag = new DocumentTag();
-		documentTag.setDocument(document1);
-		documentTag.setTag(tag2);
-		documentTag2 = documentTagRepository.save(documentTag);
+	public void createDocumentSkill2() {
+		DocumentSkill documentSkill = new DocumentSkill();
+		documentSkill.setDocument(document1);
+		documentSkill.setSkill(skill2);
+		documentSkill2 = documentSkillRepository.save(documentSkill);
 	}
 }

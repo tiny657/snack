@@ -9,21 +9,21 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class DocumentTagHistory {
+public class SkillOwnerHistory {
 	@Id
 	@GeneratedValue
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "document_id")
-	private Document document;
+	@JoinColumn(name = "skill_id")
+	private Skill skill;
 
 	@ManyToOne
-	@JoinColumn(name = "tag_id")
-	private Tag tag;
+	@JoinColumn(name = "user_id")
+	private User owner;
+
+	private Integer rank;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
-
-	private Boolean self;
 }

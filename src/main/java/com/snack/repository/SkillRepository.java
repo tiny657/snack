@@ -1,9 +1,9 @@
 package com.snack.repository;
 
-import com.snack.domain.Tag;
+import com.snack.domain.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TagRepository extends JpaRepository<Tag, Integer> {
+public interface SkillRepository extends JpaRepository<Skill, Integer> {
 }
