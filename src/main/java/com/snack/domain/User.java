@@ -35,6 +35,14 @@ public class User {
 
 	private Integer likeCount;
 
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+	private List<TagOwner> tagOwners = Lists.newArrayList();
+
+	private Integer tagOwnerCount;
+
+	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+	private List<Notification> notifications = Lists.newArrayList();
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 }
