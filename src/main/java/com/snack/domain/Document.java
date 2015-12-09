@@ -43,6 +43,11 @@ public class Document {
 	private Integer keeperCount;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
+	private List<DocumentReader> readers = Lists.newArrayList();
+
+	private Integer seeCount;
+
+	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
 	private List<DocumentSkill> skills = Lists.newArrayList();
 
 	private Integer skillCount;

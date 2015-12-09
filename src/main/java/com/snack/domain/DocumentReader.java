@@ -9,20 +9,18 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class Notification {
+public class DocumentReader {
 	@Id
 	@GeneratedValue
 	private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name = "document_id")
+	private Document document;
+
+	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User receiver;
-
-	private String message;
-
-	private Boolean see;
-
-	private Boolean delete;
+	private User reader;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
