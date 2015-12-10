@@ -22,7 +22,7 @@ public class Notification {
 
 	private Boolean see;
 
-	private Boolean delete;
+	private Boolean deleted;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
