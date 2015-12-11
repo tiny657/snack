@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,10 +20,6 @@ public class DocumentController {
 	@Autowired
 	DocumentService documentService;
 
-	@ModelAttribute CustomerForm setUpForm() {
-		return new CustomerForm();
-	}
-
 	@RequestMapping(method = RequestMethod.GET)
 	String list(Model model) {
 		List<Document> documents = documentService.findAll();
@@ -32,7 +27,12 @@ public class DocumentController {
 		return "list";
 	}
 
-	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@RequestMapping(value = "new", params = "form", method = RequestMethod.GET)
+	String createForm(DocumentForm form) {
+		return "edit";
+	}
+
+	@RequestMapping(value = "new", method = RequestMethod.POST)
 	String create(@Validated DocumentForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return list(model);
@@ -41,11 +41,6 @@ public class DocumentController {
 		BeanUtils.copyProperties(form, document);
 		documentService.create(document);
 		return "redirect:/";
-	}
-
-	@RequestMapping(value = "new", params = "form", method = RequestMethod.GET)
-	String createForm(DocumentForm form) {
-		return "edit";
 	}
 
 	@RequestMapping(value = "edit", params = "form", method = RequestMethod.GET)

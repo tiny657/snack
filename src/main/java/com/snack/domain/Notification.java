@@ -15,15 +15,20 @@ public class Notification {
 	private Integer id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@Column(nullable = false)
 	@JoinColumn(name = "user_id")
 	private User receiver;
 
+	@Column(nullable = false)
 	private String message;
 
+	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
 	private Boolean see;
 
+	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
 	private Boolean deleted;
 
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 }

@@ -15,15 +15,19 @@ public class DocumentSkillHistory {
 	private Integer id;
 
 	@ManyToOne
+	@Column(nullable = false)
 	@JoinColumn(name = "document_id")
 	private Document document;
 
 	@ManyToOne
+	@Column(nullable = false)
 	@JoinColumn(name = "skill_id")
 	private Skill skill;
 
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 
+	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
 	private Boolean self;
 }

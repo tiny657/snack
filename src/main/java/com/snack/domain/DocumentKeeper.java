@@ -15,13 +15,16 @@ public class DocumentKeeper {
 	private Integer id;
 
 	@ManyToOne
+	@Column(nullable = false)
 	@JoinColumn(name = "document_id")
 	private Document document;
 
 	@ManyToOne
+	@Column(nullable = false)
 	@JoinColumn(name = "user_id")
 	private User keeper;
 
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 }

@@ -1,8 +1,62 @@
 {{# partial "content" }}
-	<form id="documentForm" name="documentForm">
-		<input type="text" id="content" name="content" />
-		<input type="submit">
-	</form>
+	<!--<form id="documentForm" name="documentForm">-->
+	<!--<input type="text" id="content" name="content" />-->
+	<!--<input type="submit">-->
+	<!--</form>-->
+	<div class="body">
+		<div role="main" class="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="alert alert-success hidden" id="contactSuccess">
+							<strong>Success!</strong> Your message has been sent to us.
+						</div>
+
+						<div class="alert alert-danger hidden" id="contactError">
+							<strong>Error!</strong> There was an error sending your message.
+						</div>
+
+						<h2 class="mb-sm mt-sm"><strong>Contact</strong> Us</h2>
+						<form id="documentForm" name="documentForm" method="POST">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-6">
+										<label>Your name *</label>
+										<input type="text" value="" data-msg-required="Please enter author." maxlength="100" class="form-control" name="author" id="author" required>
+									</div>
+									<div class="col-md-6">
+										<label>skill *</label>
+										<input type="text" value="" data-msg-required="Please enter skills." maxlength="100" class="form-control" name="skill" id="skill" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label>Subject</label>
+										<input type="text" value="" data-msg-required="Please enter the title." maxlength="100" class="form-control" name="title" id="title" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label>Message *</label>
+										<textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="content" id="content" required></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<input type="submit" value="Send Message" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {{/partial}}
 
 {{# partial "page_script" }}
