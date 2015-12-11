@@ -17,6 +17,5 @@ public class DocumentForm {
 	@NotNull
 	private String skill;
 
-	@NotNull
 	private String userId;
 }
