@@ -30,11 +30,11 @@ public class Document {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date editDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
 	private User author;
 

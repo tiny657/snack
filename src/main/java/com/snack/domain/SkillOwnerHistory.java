@@ -14,13 +14,11 @@ public class SkillOwnerHistory {
 	@GeneratedValue
 	private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "skill_id")
 	private Skill skill;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
 	private User owner;
 

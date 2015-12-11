@@ -14,13 +14,11 @@ public class Comment {
 	@GeneratedValue
 	private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
 	private User writer;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "document_id")
 	private Document document;
 

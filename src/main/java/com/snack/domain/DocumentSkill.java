@@ -13,13 +13,11 @@ public class DocumentSkill {
 	@GeneratedValue
 	private Integer id;
 
-	@ManyToOne
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "document_id")
 	private Document document;
 
-	@ManyToOne
-	@Column(nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "skill_id")
 	private Skill skill;
 
