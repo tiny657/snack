@@ -18,22 +18,22 @@ import java.util.List;
 @RequestMapping("/")
 public class DocumentController {
 	@Autowired
-	DocumentService documentService;
+	private DocumentService documentService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	String list(Model model) {
+	public String list(Model model) {
 		List<Document> documents = documentService.findAll();
 		model.addAttribute("documents", documents);
 		return "list";
 	}
 
 	@RequestMapping(value = "new", params = "form", method = RequestMethod.GET)
-	String createForm(DocumentForm form) {
+	public String createForm(DocumentForm form) {
 		return "edit";
 	}
 
 	@RequestMapping(value = "new", method = RequestMethod.POST)
-	String create(@Validated DocumentForm form, BindingResult result, Model model) {
+	public String create(@Validated DocumentForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return list(model);
 		}
@@ -44,14 +44,14 @@ public class DocumentController {
 	}
 
 	@RequestMapping(value = "edit", params = "form", method = RequestMethod.GET)
-	String editForm(@RequestParam Integer id, DocumentForm form) {
+	public String editForm(@RequestParam Integer id, DocumentForm form) {
 		Document document = documentService.findOne(id);
 		BeanUtils.copyProperties(document, form);
 		return "edit";
 	}
 
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	String edit(@RequestParam Integer id, @Validated DocumentForm form,
+	public String edit(@RequestParam Integer id, @Validated DocumentForm form,
 		BindingResult result) {
 		if (result.hasErrors()) {
 			return editForm(id, form);
@@ -64,12 +64,12 @@ public class DocumentController {
 	}
 
 	@RequestMapping(value = "edit", params = "goToTop")
-	String goToTop() {
+	public String goToTop() {
 		return "redirect:/";
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	String delete(@RequestParam Integer id) {
+	public String delete(@RequestParam Integer id) {
 		documentService.delete(id);
 		return "redirect:/";
 	}

@@ -7,13 +7,16 @@ import javax.validation.constraints.Size;
 
 @Data
 public class DocumentForm {
-    @NotNull
-    @Size(min = 1, max = 255)
-    private String title;
+	@NotNull
+	@Size(min = 1, max = 255)
+	private String title;
 
-    @NotNull
-    private String content;
+	@NotNull
+	private String content;
 
-    @NotNull
-    private String skill;
+	@NotNull
+	private String skill;
+
+	@NotNull
+	private String userId;
 }

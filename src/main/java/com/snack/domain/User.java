@@ -20,31 +20,31 @@ public class User {
 	private String name;
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer point;
+	private Integer point = 0;
 
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Document> myDocuments = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer myDocumentCount;
+	private Integer myDocumentCount = 0;
 
 	@OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
 	private List<Comment> myComments = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer myCommentCount;
+	private Integer myCommentCount = 0;
 
 	@OneToMany(mappedBy = "keeper", cascade = CascadeType.ALL)
 	private List<DocumentKeeper> myKeptDocuments = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer myKeepCount;
+	private Integer myKeepCount = 0;
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<SkillOwner> mySkills = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer mySkillCount;
+	private Integer mySkillCount = 0;
 
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
 	private List<Notification> notifications = Lists.newArrayList();
@@ -53,6 +53,6 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
-	private Boolean admin;
+	@Column(nullable = false, columnDefinition = "BIT DEFAULT 0")
+	private Boolean admin = false;
 }

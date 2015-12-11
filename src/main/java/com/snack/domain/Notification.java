@@ -21,11 +21,11 @@ public class Notification {
 	@Column(nullable = false)
 	private String message;
 
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
-	private Boolean see;
+	@Column(nullable = false, columnDefinition = "BIT DEFAULT 0")
+	private Boolean see = false;
 
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
-	private Boolean deleted;
+	@Column(nullable = false, columnDefinition = "BIT DEFAULT 0")
+	private Boolean deleted = false;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)

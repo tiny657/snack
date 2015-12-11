@@ -26,6 +26,6 @@ public class DocumentSkillHistory {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
-	private Boolean self;
+	@Column(nullable = false, columnDefinition = "BIT DEFAULT 1")
+	private Boolean self = true;
 }

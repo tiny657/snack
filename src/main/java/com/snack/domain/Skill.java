@@ -22,8 +22,8 @@ public class Skill {
 	private List<DocumentSkill> documents;
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer documentCount;
+	private Integer documentCount = 0;
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer point;
+	private Integer point = 0;
 }

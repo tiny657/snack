@@ -23,10 +23,10 @@ public class SkillOwner {
 	private User owner;
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer preRank;
+	private Integer preRank = 0;
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer rank;
+	private Integer rank = 0;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)

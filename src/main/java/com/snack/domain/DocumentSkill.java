@@ -21,6 +21,6 @@ public class DocumentSkill {
 	@JoinColumn(name = "skill_id")
 	private Skill skill;
 
-	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
-	private Boolean self;
+	@Column(nullable = false, columnDefinition = "BIT DEFAULT 1")
+	private Boolean self = true;
 }

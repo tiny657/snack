@@ -18,7 +18,7 @@ public class Document {
 	private Integer id;
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer point;
+	private Integer point = 0;
 
 	@Column(nullable = false)
 	private String title;
