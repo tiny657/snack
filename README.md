@@ -1,2 +1,5 @@
+- document에서 db에서 읽어서 보여주자
+- comment에서 위에꺼 연동하자. (documentId)
+- 한글깨짐
 - 500 error page
 - profile: stackoverflow, github

@@ -566,15 +566,16 @@
 
 								</div>
 
+								{{!comment form}}
 								<div class="post-block post-leave-comment">
 									<h3 class="heading-primary">Leave a comment</h3>
 
-									<form action="" method="post">
+									<form action="/comment/new" method="post">
 										<div class="row">
 											<div class="form-group">
 												<div class="col-md-6">
 													<label>Your name *</label>
-													<input type="text" value="" maxlength="100" class="form-control" name="name" id="name">
+													<input type="text" value="" maxlength="100" class="form-control" name="userId" id="userId">
 												</div>
 											</div>
 										</div>
@@ -582,7 +583,7 @@
 											<div class="form-group">
 												<div class="col-md-12">
 													<label>Comment *</label>
-													<textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment"></textarea>
+													<textarea maxlength="5000" rows="10" class="form-control" name="content" id="content"></textarea>
 												</div>
 											</div>
 										</div>

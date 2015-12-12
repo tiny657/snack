@@ -9,18 +9,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.sql.DataSource;
+import java.nio.charset.Charset;
 
 @Configuration
 public class AppConfig {
     @Autowired
-    DataSourceProperties dataSourceProperties;
-    DataSource dataSource;
+    private DataSourceProperties dataSourceProperties;
+    private DataSource dataSource;
 
     @Bean
-    DataSource realDataSource() {
+    public DataSource realDataSource() {
         DataSourceBuilder factory = DataSourceBuilder
                 .create(this.dataSourceProperties.getClassLoader())
                 .url(this.dataSourceProperties.getUrl())
@@ -32,13 +35,18 @@ public class AppConfig {
 
     @Bean
     @Primary
-    DataSource dataSource() {
+    public DataSource dataSource() {
         return new Log4jdbcProxyDataSource(this.dataSource);
+    }
+
+    @Bean
+    public HttpMessageConverter<String> responseBodyConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 
     @Order(Ordered.HIGHEST_PRECEDENCE)
     @Bean
-    CharacterEncodingFilter characterEncodingFilter() {
+    public CharacterEncodingFilter characterEncodingFilter() {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);

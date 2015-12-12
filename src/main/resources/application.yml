@@ -6,4 +6,7 @@ spring:
     password:
   jpa:
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+    properties.hibernate.connection.characterEncoding: utf-8
+    properties.hibernate.connection.CharSet: utf-8
+    properties.hibernate.connection.useUnicode: true
     hibernate.ddl-auto: validate
