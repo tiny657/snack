@@ -2,6 +2,9 @@ package com.snack.repository;
 
 import com.snack.App;
 import com.snack.domain.*;
+import com.snack.service.CommentService;
+import com.snack.service.DocumentKeeperService;
+import com.snack.service.DocumentSkillService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +25,10 @@ public class InitializeRepositoryTest {
 	DocumentRepository documentRepository;
 
 	@Autowired
-	CommentRepository commentRepository;
+	CommentService commentService;
 
 	@Autowired
-	DocumentKeeperRepository documentKeeperRepository;
+	DocumentKeeperService documentKeeperService;
 
 	@Autowired
 	NotificationRepository notificationRepository;
@@ -40,7 +43,7 @@ public class InitializeRepositoryTest {
 	SkillOwnerHistoryRepository skillOwnerHistoryRepository;
 
 	@Autowired
-	DocumentSkillRepository documentSkillRepository;
+	DocumentSkillService documentSkillService;
 
 	@Autowired
 	DocumentSkillHistoryRepository documentSkillHistoryRepository;
@@ -48,7 +51,7 @@ public class InitializeRepositoryTest {
 	User user1, user2, user3, user4;
 	Document document1, document2;
 	Comment comment1, comment2;
-	DocumentKeeper documentKeeper1, documentKeeper2, documentKeeper3, documentKeeper4;
+	DocumentKeeper documentKeeper1, documentKeeper2, documentKeeper3, documentKeeper4, documentKeeper5;
 	Notification notification1, notification2;
 	Skill skill1, skill2;
 	SkillOwner skillOwner1, skillOwner2;
@@ -58,22 +61,18 @@ public class InitializeRepositoryTest {
 
 	@Test
 	@Rollback(false)
-	public void _deleteAll() {
+	public void initialize() {
 		userRepository.deleteAll();
 		documentRepository.deleteAll();
-		commentRepository.deleteAll();
-		documentKeeperRepository.deleteAll();
+		commentService.deleteAll();
+		documentKeeperService.deleteAll();
 		notificationRepository.deleteAll();
 		skillRepository.deleteAll();
 		skillOwnerRepository.deleteAll();
 		skillOwnerHistoryRepository.deleteAll();
-		documentSkillRepository.deleteAll();
+		documentSkillService.deleteAll();
 		documentSkillHistoryRepository.deleteAll();
-	}
 
-	@Test
-	@Rollback(false)
-	public void insertAll() {
 		createUser1();
 		createUser2();
 		createUser3();
@@ -90,6 +89,7 @@ public class InitializeRepositoryTest {
 		createDocumentKeeper2();
 		createDocumentKeeper3();
 		createDocumentKeeper4();
+		createDocumentKeeper5();
 		createSkillOwner1();
 		createDocumentSkill1();
 		createDocumentSkill2();
@@ -101,8 +101,6 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId1");
 		user.setName("name1");
-		user.setMyCommentCount(1);
-		user.setMyKeepCount(3);
 		user1 = userRepository.save(user);
 	}
 
@@ -112,7 +110,6 @@ public class InitializeRepositoryTest {
 		user.setUserId("userId2");
 		user.setName("name2");
 		user.setMyCommentCount(1);
-		user.setMyKeepCount(3);
 		user2 = userRepository.save(user);
 	}
 
@@ -121,8 +118,6 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId3");
 		user.setName("name3");
-		user.setMyCommentCount(1);
-		user.setMyKeepCount(3);
 		user3 = userRepository.save(user);
 	}
 
@@ -131,8 +126,6 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId4");
 		user.setName("name4");
-		user.setMyCommentCount(1);
-		user.setMyKeepCount(3);
 		user4 = userRepository.save(user);
 	}
 
@@ -157,10 +150,8 @@ public class InitializeRepositoryTest {
 	@Test
 	public void createDocument1() {
 		Document document = new Document();
-		document.setCommentCount(1);
 		document.setAuthor(user1);
 		document.setContent("content1");
-		document.setKeeperCount(2);
 		document.setTitle("title1");
 		document1 = documentRepository.save(document);
 	}
@@ -168,10 +159,8 @@ public class InitializeRepositoryTest {
 	@Test
 	public void createDocument2() {
 		Document document = new Document();
-		document.setCommentCount(1);
 		document.setAuthor(user1);
 		document.setContent("content2");
-		document.setKeeperCount(2);
 		document.setTitle("title2");
 		document2 = documentRepository.save(document);
 	}
@@ -182,7 +171,7 @@ public class InitializeRepositoryTest {
 		comment.setContent("comment_content1");
 		comment.setWriter(user1);
 		comment.setDocument(document1);
-		comment1 = commentRepository.save(comment);
+		comment1 = commentService.create(comment);
 	}
 
 	@Test
@@ -191,7 +180,7 @@ public class InitializeRepositoryTest {
 		comment.setContent("comment_content2");
 		comment.setWriter(user1);
 		comment.setDocument(document1);
-		comment2 = commentRepository.save(comment);
+		comment2 = commentService.create(comment);
 	}
 
 	@Test
@@ -199,7 +188,7 @@ public class InitializeRepositoryTest {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document1);
 		documentKeeper.setKeeper(user1);
-		documentKeeper1 = documentKeeperRepository.save(documentKeeper);
+		documentKeeper1 = documentKeeperService.create(documentKeeper);
 	}
 
 	@Test
@@ -207,23 +196,31 @@ public class InitializeRepositoryTest {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document1);
 		documentKeeper.setKeeper(user2);
-		documentKeeper2 = documentKeeperRepository.save(documentKeeper);
+		documentKeeper2 = documentKeeperService.create(documentKeeper);
 	}
 
 	@Test
 	public void createDocumentKeeper3() {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
-		documentKeeper.setDocument(document2);
-		documentKeeper.setKeeper(user1);
-		documentKeeper3 = documentKeeperRepository.save(documentKeeper);
+		documentKeeper.setDocument(document1);
+		documentKeeper.setKeeper(user3);
+		documentKeeper3 = documentKeeperService.create(documentKeeper);
 	}
 
 	@Test
 	public void createDocumentKeeper4() {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document2);
+		documentKeeper.setKeeper(user1);
+		documentKeeper4 = documentKeeperService.create(documentKeeper);
+	}
+
+	@Test
+	public void createDocumentKeeper5() {
+		DocumentKeeper documentKeeper = new DocumentKeeper();
+		documentKeeper.setDocument(document2);
 		documentKeeper.setKeeper(user3);
-		documentKeeper4 = documentKeeperRepository.save(documentKeeper);
+		documentKeeper5 = documentKeeperService.create(documentKeeper);
 	}
 
 	@Test
@@ -265,7 +262,7 @@ public class InitializeRepositoryTest {
 		DocumentSkill documentSkill = new DocumentSkill();
 		documentSkill.setDocument(document1);
 		documentSkill.setSkill(skill1);
-		documentSkill1 = documentSkillRepository.save(documentSkill);
+		documentSkill1 = documentSkillService.create(documentSkill);
 	}
 
 	@Test
@@ -273,7 +270,7 @@ public class InitializeRepositoryTest {
 		DocumentSkill documentSkill = new DocumentSkill();
 		documentSkill.setDocument(document1);
 		documentSkill.setSkill(skill2);
-		documentSkill2 = documentSkillRepository.save(documentSkill);
+		documentSkill2 = documentSkillService.create(documentSkill);
 	}
 
 	@Test
@@ -281,6 +278,6 @@ public class InitializeRepositoryTest {
 		DocumentSkill documentSkill = new DocumentSkill();
 		documentSkill.setDocument(document2);
 		documentSkill.setSkill(skill1);
-		documentSkill1 = documentSkillRepository.save(documentSkill);
+		documentSkill1 = documentSkillService.create(documentSkill);
 	}
 }

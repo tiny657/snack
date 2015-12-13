@@ -54,7 +54,7 @@ public class Document {
 	private List<DocumentReader> readers = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer seeCount = 0;
+	private Integer readerCount = 0;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
 	private List<DocumentSkill> skills = Lists.newArrayList();
