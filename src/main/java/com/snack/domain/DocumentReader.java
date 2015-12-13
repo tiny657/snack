@@ -24,5 +24,5 @@ public class DocumentReader {
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate;
+	private Date regDate = new Date();
 }

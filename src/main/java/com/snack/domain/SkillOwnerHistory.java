@@ -27,5 +27,5 @@ public class SkillOwnerHistory {
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate;
+	private Date regDate = new Date();
 }

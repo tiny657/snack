@@ -24,7 +24,7 @@ public class DocumentSkillHistory {
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate;
+	private Date regDate = new Date();
 
 	@Column(nullable = false, columnDefinition = "BIT DEFAULT 1")
 	private Boolean self = true;

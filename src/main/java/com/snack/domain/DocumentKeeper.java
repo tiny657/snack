@@ -24,5 +24,5 @@ public class DocumentKeeper {
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate;
+	private Date regDate = new Date();
 }

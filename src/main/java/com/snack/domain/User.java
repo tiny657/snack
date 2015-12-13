@@ -51,7 +51,7 @@ public class User {
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate;
+	private Date regDate = new Date();
 
 	@Column(nullable = false, columnDefinition = "BIT DEFAULT 0")
 	private Boolean admin = false;
