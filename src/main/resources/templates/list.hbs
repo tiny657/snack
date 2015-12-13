@@ -1,34 +1,4 @@
 {{# partial "content" }}
-<!--<div class="body">-->
-	<!--<div class="row">-->
-		<!--<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">-->
-			<!--<div class="post-preview">-->
-				<!--<a href="post.html">-->
-					<!--{{#each documents}}-->
-						<!--<h2 class="post-title">{{title}}</h2>-->
-
-						<!--<h3 class="post-subtitle">{{content}}</h3>-->
-						<!--&lt;!&ndash;<li>{{commentCount}}</li>&ndash;&gt;-->
-						<!--&lt;!&ndash;<li>{{keeperCount}}</li>&ndash;&gt;-->
-						<!--&lt;!&ndash;<li>{{postDate}}</li>&ndash;&gt;-->
-						<!--<p class="post-meta">{{author.name}}</p>-->
-
-						<!--&lt;!&ndash;<li>COMMENTS</li>&ndash;&gt;-->
-							<!--&lt;!&ndash;{{#each comments}}&ndash;&gt;-->
-						<!--&lt;!&ndash;<li>{{content}}</li>&ndash;&gt;-->
-						<!--&lt;!&ndash;<li>{{writer.name}}</li>&ndash;&gt;-->
-						<!--&lt;!&ndash;<li>{{regDate}}</li>&ndash;&gt;-->
-							<!--&lt;!&ndash;{{/each}}&ndash;&gt;-->
-						<!--&lt;!&ndash;<li>SKILLS</li>&ndash;&gt;-->
-							<!--&lt;!&ndash;{{#each documentSkills}}&ndash;&gt;-->
-						<!--&lt;!&ndash;<li>{{skill.name}}</li>&ndash;&gt;-->
-							<!--&lt;!&ndash;{{/each}}&ndash;&gt;-->
-					<!--{{/each}}-->
-				<!--</a>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
 <div class="body">
 	<header id="header" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 57, "stickySetTop": "-57px", "stickyChangeLogo": true}'>
 		<div class="header-body">
@@ -476,27 +446,29 @@
 				<div class="col-md-12">
 					<div class="blog-posts">
 
+						{{#each documents}}
 						<article class="post post-large">
 							<div class="post-date">
+								{{!날짜 변환}}
 								<span class="day">10</span>
 								<span class="month">Jan</span>
 							</div>
 
 							<div class="post-content">
-
-								<h2><a href="blog-post.html">플랫폼 사업자가 되고싶어요? 네트워크효과를 만들어내고 싶어요?</a></h2>
-								<p>모두가 플랫폼 사업자를 꿈꾼다. 아니, 요즘 스타트업들 만나보면 우린 단순히 제품/서비스를 제공하는 사업자가 아니라 폼나는 "플랫폼" 사업자라는 말을 자주 듣는다.
-
-									그런데, 플랫폼 사업자는 자기가 원한다고 되는게 아니라는 말을 해주고 싶다. 1인칭 시점으로 말할 수 있는게 아니라 3인칭 시점에서 이야기되어야 하는 것이 플랫폼 사업자다.
-
-									벤처투자를 높은 가치평가로 받기 위해서 거대한 시장에 무한한 성장성을 제시하고 최대한 많은 돈을 투자받고 싶은 절박한 심정을 이해하지 못하는 것은 아니다. 하지만, 플랫폼사업자의 꿈이 어떻게 하면 사람들로 북적대는 플랫폼이 될 수 있을까?를 함께 고민하고자 펜을 들어본다.
-									</p>
+								<h2><a href="blog-post.html">{{title}}</a></h2>
+								<p>{{content}}</p>
 
 								{{!Info}}
 								<div class="post-meta">
-									<span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
-									<span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
-									<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+									<span><i class="fa fa-user"></i> By <a href="#">{{author.name}}</a> </span>
+									{{!List 이렇게 하면 되나?}}
+									<span><i class="fa fa-tag"></i> <a href="#">
+										{{#each skills}}
+											{{skill.name}},
+										{{/each}}
+									</a> </span>
+									<span><i class="fa fa-comments"></i> <a href="#">{{commentCount}} Comments</a></span>
+									{{!접기 기능}}
 									<a href="blog-post.html" class="btn btn-xs btn-primary pull-right">Read more...</a>
 								</div>
 
@@ -508,15 +480,16 @@
 											<img src="img/avatar.jpg" alt="">
 										</a>
 									</div>
-									<p><strong class="name"><a href="#">John Doe</a></strong></p>
+									<p><strong class="name"><a href="#">{{author.name}}</a></strong></p>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui. </p>
 								</div>
 
 								{{!Comments}}
 								<div class="post-block post-comments clearfix">
-									<h3 class="heading-primary"><i class="fa fa-comments"></i>Comments (3)</h3>
+									<h3 class="heading-primary"><i class="fa fa-comments"></i>Comments ({{commentCount}})</h3>
 
 									<ul class="comments">
+										{{#each comments}}
 										<li>
 											<div class="comment">
 												<div class="img-thumbnail">
@@ -525,45 +498,18 @@
 												<div class="comment-block">
 													<div class="comment-arrow"></div>
 															<span class="comment-by">
-																<strong>John Doe</strong>
+																<strong>{{writer.name}}</strong>
 															</span>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-													<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
+													{{!document, comment의 content가 같은데 상관없나?}}
+													<p>{{content}}</p>
+													<span class="date pull-right">{{regDate}}</span>
+													{{!Time format 변경 필요}}
+													<!--<span class="date pull-right">January 12, 2013 at 1:38 pm</span>-->
 												</div>
 											</div>
 										</li>
-										<li>
-											<div class="comment">
-												<div class="img-thumbnail">
-													<img class="avatar" alt="" src="img/avatar.jpg">
-												</div>
-												<div class="comment-block">
-													<div class="comment-arrow"></div>
-															<span class="comment-by">
-																<strong>John Doe</strong>
-															</span>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-													<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="comment">
-												<div class="img-thumbnail">
-													<img class="avatar" alt="" src="img/avatar.jpg">
-												</div>
-												<div class="comment-block">
-													<div class="comment-arrow"></div>
-															<span class="comment-by">
-																<strong>John Doe</strong>
-															</span>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-													<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-												</div>
-											</div>
-										</li>
+										{{/each}}
 									</ul>
-
 								</div>
 
 								{{!comment form}}
@@ -596,64 +542,11 @@
 								</div>
 							</div>
 						</article>
-
-						<article class="post post-large">
-
-							<div class="post-date">
-								<span class="day">10</span>
-								<span class="month">Jan</span>
-							</div>
-
-							<div class="post-content">
-
-								<h2><a href="blog-post.html">Class aptent taciti sociosqu ad litora torquent</a></h2>
-								<p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]</p>
-
-								<div class="post-meta">
-									<span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
-									<span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
-									<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
-									<a href="blog-post.html" class="btn btn-xs btn-primary pull-right">Read more...</a>
-								</div>
-
-							</div>
-						</article>
-
-						<article class="post post-large">
-
-							<div class="post-date">
-								<span class="day">10</span>
-								<span class="month">Jan</span>
-							</div>
-
-							<div class="post-content">
-
-								<h2><a href="blog-post.html">Class aptent taciti sociosqu ad litora torquent</a></h2>
-								<p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]</p>
-
-								<div class="post-meta">
-									<span><i class="fa fa-user"></i> By <a href="#">John Doe</a> </span>
-									<span><i class="fa fa-tag"></i> <a href="#">Duis</a>, <a href="#">News</a> </span>
-									<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
-									<a href="blog-post.html" class="btn btn-xs btn-primary pull-right">Read more...</a>
-								</div>
-
-							</div>
-						</article>
-
-						<ul class="pagination pagination-lg pull-right">
-							<li><a href="#">«</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">»</a></li>
-						</ul>
+						{{/each}}
 
 					</div>
 				</div>
-
 			</div>
-
 		</div>
 	</div>
 </div>

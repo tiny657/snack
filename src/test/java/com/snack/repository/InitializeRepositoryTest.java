@@ -1,5 +1,6 @@
 package com.snack.repository;
 
+import com.google.common.collect.Lists;
 import com.snack.App;
 import com.snack.domain.*;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = App.class)
@@ -81,6 +83,8 @@ public class InitializeRepositoryTest {
 		createUser4();
 		createNotification1();
 		createNotification2();
+		createSkill1();
+		createSkill2();
 		createDocument1();
 		createDocument2();
 		createComment1();
@@ -89,8 +93,6 @@ public class InitializeRepositoryTest {
 		createDocumentKeeper2();
 		createDocumentKeeper3();
 		createDocumentKeeper4();
-		createSkill1();
-		createSkill2();
 		createSkillOwner1();
 		createDocumentSkill1();
 		createDocumentSkill2();
@@ -168,6 +170,14 @@ public class InitializeRepositoryTest {
 		document.setContent("content1");
 		document.setKeeperCount(2);
 		document.setTitle("title1");
+
+		List<DocumentSkill> documentSkills = Lists.newArrayList();
+		DocumentSkill documentSkill = new DocumentSkill();
+		documentSkill.setDocument(document);
+		documentSkill.setSkill(skill1);
+		documentSkills.add(documentSkill);
+		document.setSkills(documentSkills);
+
 		document.setRegDate(new Date());
 		document.setEditDate(new Date());
 		document1 = documentRepository.save(document);
@@ -181,6 +191,14 @@ public class InitializeRepositoryTest {
 		document.setContent("content2");
 		document.setKeeperCount(2);
 		document.setTitle("title2");
+
+		List<DocumentSkill> documentSkills = Lists.newArrayList();
+		DocumentSkill documentSkill = new DocumentSkill();
+		documentSkill.setDocument(document);
+		documentSkill.setSkill(skill1);
+		documentSkills.add(documentSkill);
+		document.setSkills(documentSkills);
+
 		document.setRegDate(new Date());
 		document.setEditDate(new Date());
 		document2 = documentRepository.save(document);
