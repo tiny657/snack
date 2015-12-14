@@ -19,6 +19,9 @@ public class User {
 	@Column(nullable = false)
 	private String name;
 
+	@Column
+	private String description;
+
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer point = 0;
 

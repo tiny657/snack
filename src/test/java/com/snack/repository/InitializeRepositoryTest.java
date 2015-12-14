@@ -104,6 +104,7 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId1");
 		user.setName("name1");
+		user.setDescription("My name is name1");
 		user1 = userService.create(user);
 	}
 
@@ -111,7 +112,7 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId2");
 		user.setName("name2");
-		user.setMyCommentCount(1);
+		user.setDescription("My name is name2");
 		user2 = userService.create(user);
 	}
 
@@ -119,6 +120,7 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId3");
 		user.setName("name3");
+		user.setDescription("My name is name3");
 		user3 = userService.create(user);
 	}
 
@@ -126,6 +128,7 @@ public class InitializeRepositoryTest {
 		User user = new User();
 		user.setUserId("userId4");
 		user.setName("name4");
+		user.setDescription("My name is name4");
 		user4 = userService.create(user);
 	}
 
