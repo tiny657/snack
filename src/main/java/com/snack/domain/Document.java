@@ -61,4 +61,20 @@ public class Document {
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer skillCount = 0;
+
+	public void increaseCommentCount() {
+		commentCount++;
+	}
+
+	public void increaseKeeperCount() {
+		keeperCount++;
+	}
+
+	public void increaseReaderCount() {
+		readerCount++;
+	}
+
+	public void increaseSkillCount() {
+		skillCount++;
+	}
 }

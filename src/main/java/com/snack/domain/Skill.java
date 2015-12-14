@@ -26,4 +26,8 @@ public class Skill {
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer point = 0;
+
+	public void increaseDocumentCount() {
+		documentCount++;
+	}
 }

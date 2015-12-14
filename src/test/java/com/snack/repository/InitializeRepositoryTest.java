@@ -2,9 +2,7 @@ package com.snack.repository;
 
 import com.snack.App;
 import com.snack.domain.*;
-import com.snack.service.CommentService;
-import com.snack.service.DocumentKeeperService;
-import com.snack.service.DocumentSkillService;
+import com.snack.service.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +17,19 @@ import javax.transaction.Transactional;
 @Transactional
 public class InitializeRepositoryTest {
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 
 	@Autowired
-	DocumentRepository documentRepository;
+	DocumentService documentService;
 
 	@Autowired
 	CommentService commentService;
 
 	@Autowired
 	DocumentKeeperService documentKeeperService;
+
+	@Autowired
+	DocumentReaderService documentReaderService;
 
 	@Autowired
 	NotificationRepository notificationRepository;
@@ -52,6 +53,7 @@ public class InitializeRepositoryTest {
 	Document document1, document2;
 	Comment comment1, comment2;
 	DocumentKeeper documentKeeper1, documentKeeper2, documentKeeper3, documentKeeper4, documentKeeper5;
+	DocumentReader documentReader1, documentReader2;
 	Notification notification1, notification2;
 	Skill skill1, skill2;
 	SkillOwner skillOwner1, skillOwner2;
@@ -62,8 +64,8 @@ public class InitializeRepositoryTest {
 	@Test
 	@Rollback(false)
 	public void initialize() {
-		userRepository.deleteAll();
-		documentRepository.deleteAll();
+		userService.deleteAll();
+		documentService.deleteAll();
 		commentService.deleteAll();
 		documentKeeperService.deleteAll();
 		notificationRepository.deleteAll();
@@ -90,46 +92,43 @@ public class InitializeRepositoryTest {
 		createDocumentKeeper3();
 		createDocumentKeeper4();
 		createDocumentKeeper5();
+		createDocumentReader1();
+		createDocumentReader2();
 		createSkillOwner1();
 		createDocumentSkill1();
 		createDocumentSkill2();
 		createDocumentSkill3();
 	}
 
-	@Test
 	public void createUser1() {
 		User user = new User();
 		user.setUserId("userId1");
 		user.setName("name1");
-		user1 = userRepository.save(user);
+		user1 = userService.create(user);
 	}
 
-	@Test
 	public void createUser2() {
 		User user = new User();
 		user.setUserId("userId2");
 		user.setName("name2");
 		user.setMyCommentCount(1);
-		user2 = userRepository.save(user);
+		user2 = userService.create(user);
 	}
 
-	@Test
 	public void createUser3() {
 		User user = new User();
 		user.setUserId("userId3");
 		user.setName("name3");
-		user3 = userRepository.save(user);
+		user3 = userService.create(user);
 	}
 
-	@Test
 	public void createUser4() {
 		User user = new User();
 		user.setUserId("userId4");
 		user.setName("name4");
-		user4 = userRepository.save(user);
+		user4 = userService.create(user);
 	}
 
-	@Test
 	public void createNotification1() {
 		Notification notification = new Notification();
 		notification.setMessage("noti1");
@@ -138,7 +137,6 @@ public class InitializeRepositoryTest {
 		notification1 = notificationRepository.save(notification);
 	}
 
-	@Test
 	public void createNotification2() {
 		Notification notification = new Notification();
 		notification.setMessage("noti2");
@@ -147,25 +145,22 @@ public class InitializeRepositoryTest {
 		notification2 = notificationRepository.save(notification);
 	}
 
-	@Test
 	public void createDocument1() {
 		Document document = new Document();
 		document.setAuthor(user1);
 		document.setContent("content1");
 		document.setTitle("title1");
-		document1 = documentRepository.save(document);
+		document1 = documentService.create(document);
 	}
 
-	@Test
 	public void createDocument2() {
 		Document document = new Document();
 		document.setAuthor(user1);
 		document.setContent("content2");
 		document.setTitle("title2");
-		document2 = documentRepository.save(document);
+		document2 = documentService.create(document);
 	}
 
-	@Test
 	public void createComment1() {
 		Comment comment = new Comment();
 		comment.setContent("comment_content1");
@@ -174,7 +169,6 @@ public class InitializeRepositoryTest {
 		comment1 = commentService.create(comment);
 	}
 
-	@Test
 	public void createComment2() {
 		Comment comment = new Comment();
 		comment.setContent("comment_content2");
@@ -183,7 +177,6 @@ public class InitializeRepositoryTest {
 		comment2 = commentService.create(comment);
 	}
 
-	@Test
 	public void createDocumentKeeper1() {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document1);
@@ -191,7 +184,6 @@ public class InitializeRepositoryTest {
 		documentKeeper1 = documentKeeperService.create(documentKeeper);
 	}
 
-	@Test
 	public void createDocumentKeeper2() {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document1);
@@ -199,7 +191,6 @@ public class InitializeRepositoryTest {
 		documentKeeper2 = documentKeeperService.create(documentKeeper);
 	}
 
-	@Test
 	public void createDocumentKeeper3() {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document1);
@@ -207,7 +198,6 @@ public class InitializeRepositoryTest {
 		documentKeeper3 = documentKeeperService.create(documentKeeper);
 	}
 
-	@Test
 	public void createDocumentKeeper4() {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document2);
@@ -215,7 +205,6 @@ public class InitializeRepositoryTest {
 		documentKeeper4 = documentKeeperService.create(documentKeeper);
 	}
 
-	@Test
 	public void createDocumentKeeper5() {
 		DocumentKeeper documentKeeper = new DocumentKeeper();
 		documentKeeper.setDocument(document2);
@@ -223,21 +212,32 @@ public class InitializeRepositoryTest {
 		documentKeeper5 = documentKeeperService.create(documentKeeper);
 	}
 
-	@Test
+	public void createDocumentReader1() {
+		DocumentReader documentReader = new DocumentReader();
+		documentReader.setDocument(document1);
+		documentReader.setReader(user1);
+		documentReaderService.create(documentReader);
+	}
+
+	public void createDocumentReader2() {
+		DocumentReader documentReader = new DocumentReader();
+		documentReader.setDocument(document2);
+		documentReader.setReader(user1);
+		documentReaderService.create(documentReader);
+	}
+
 	public void createSkill1() {
 		Skill skill = new Skill();
 		skill.setName("skill1");
 		skill1 = skillRepository.save(skill);
 	}
 
-	@Test
 	public void createSkill2() {
 		Skill skill = new Skill();
 		skill.setName("skill2");
 		skill2 = skillRepository.save(skill);
 	}
 
-	@Test
 	public void createSkillOwner1() {
 		SkillOwner skillOwner = new SkillOwner();
 		skillOwner.setSkill(skill1);
@@ -247,7 +247,6 @@ public class InitializeRepositoryTest {
 		skillOwner1 = skillOwnerRepository.save(skillOwner);
 	}
 
-	@Test
 	public void createSkillOwner2() {
 		SkillOwner skillOwner = new SkillOwner();
 		skillOwner.setSkill(skill2);
@@ -257,7 +256,6 @@ public class InitializeRepositoryTest {
 		skillOwner2 = skillOwnerRepository.save(skillOwner);
 	}
 
-	@Test
 	public void createDocumentSkill1() {
 		DocumentSkill documentSkill = new DocumentSkill();
 		documentSkill.setDocument(document1);
@@ -265,7 +263,6 @@ public class InitializeRepositoryTest {
 		documentSkill1 = documentSkillService.create(documentSkill);
 	}
 
-	@Test
 	public void createDocumentSkill2() {
 		DocumentSkill documentSkill = new DocumentSkill();
 		documentSkill.setDocument(document1);
@@ -273,7 +270,6 @@ public class InitializeRepositoryTest {
 		documentSkill2 = documentSkillService.create(documentSkill);
 	}
 
-	@Test
 	public void createDocumentSkill3() {
 		DocumentSkill documentSkill = new DocumentSkill();
 		documentSkill.setDocument(document2);

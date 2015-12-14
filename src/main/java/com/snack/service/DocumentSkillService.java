@@ -1,6 +1,5 @@
 package com.snack.service;
 
-import com.snack.domain.Document;
 import com.snack.domain.DocumentSkill;
 import com.snack.repository.DocumentSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,8 @@ public class DocumentSkillService {
 
 	@Transactional
 	public DocumentSkill create(DocumentSkill documentSkill) {
-		Document document = documentSkill.getDocument();
-		document.setSkillCount(document.getSkillCount() + 1);
+		documentSkill.getDocument().increaseSkillCount();
+		documentSkill.getSkill().increaseDocumentCount();
 		return documentSkillRepository.save(documentSkill);
 	}
 

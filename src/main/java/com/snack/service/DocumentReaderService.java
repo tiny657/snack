@@ -1,6 +1,5 @@
 package com.snack.service;
 
-import com.snack.domain.Document;
 import com.snack.domain.DocumentReader;
 import com.snack.repository.DocumentReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,8 @@ public class DocumentReaderService {
 
 	@Transactional
 	public DocumentReader create(DocumentReader documentReader) {
-		Document document = documentReader.getDocument();
-		document.setReaderCount(document.getReaderCount() + 1);
+		documentReader.getDocument().increaseReaderCount();
+		documentReader.getReader().increaseMyReadDocumentCount();
 		return documentReaderRepository.save(documentReader);
 	}
 
@@ -38,7 +37,7 @@ public class DocumentReaderService {
 		documentReaderRepository.delete(id);
 	}
 
-	public void deleteAll() {
+	public void deleteAll(){
 		documentReaderRepository.deleteAll();
 	}
 }

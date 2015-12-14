@@ -1,7 +1,6 @@
 package com.snack.service;
 
 import com.snack.domain.Comment;
-import com.snack.domain.Document;
 import com.snack.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +24,8 @@ public class CommentService {
 
 	@Transactional
 	public Comment create(Comment comment) {
-		Document document = comment.getDocument();
-		document.setCommentCount(document.getCommentCount() + 1);
+		comment.getDocument().increaseCommentCount();
+		comment.getWriter().increaseMyCommentCount();
 		return commentRepository.save(comment);
 	}
 

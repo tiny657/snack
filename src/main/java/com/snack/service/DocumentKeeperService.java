@@ -1,6 +1,5 @@
 package com.snack.service;
 
-import com.snack.domain.Document;
 import com.snack.domain.DocumentKeeper;
 import com.snack.repository.DocumentKeeperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,8 @@ public class DocumentKeeperService {
 
 	@Transactional
 	public DocumentKeeper create(DocumentKeeper documentKeeper) {
-		Document document = documentKeeper.getDocument();
-		document.setKeeperCount(document.getKeeperCount() + 1);
+		documentKeeper.getDocument().increaseKeeperCount();
+		documentKeeper.getKeeper().increaseMyKeepCount();
 		return documentKeeperRepository.save(documentKeeper);
 	}
 

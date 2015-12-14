@@ -34,8 +34,14 @@ public class User {
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer myCommentCount = 0;
 
+	@OneToMany(mappedBy = "reader", cascade = CascadeType.ALL)
+	private List<DocumentReader> myReadDocuments = Lists.newArrayList();
+
+	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+	private Integer myReadDocumentCount = 0;
+
 	@OneToMany(mappedBy = "keeper", cascade = CascadeType.ALL)
-	private List<DocumentKeeper> myKeptDocuments = Lists.newArrayList();
+	private List<DocumentKeeper> myKeepDocuments = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer myKeepCount = 0;
@@ -55,4 +61,24 @@ public class User {
 
 	@Column(nullable = false, columnDefinition = "BIT DEFAULT 0")
 	private Boolean admin = false;
+
+	public void increaseMyDocumentCount() {
+		myDocumentCount++;
+	}
+
+	public void increaseMyReadDocumentCount() {
+		myReadDocumentCount++;
+	}
+
+	public void increaseMyCommentCount() {
+		myCommentCount++;
+	}
+
+	public void increaseMyKeepCount() {
+		myKeepCount++;
+	}
+
+	public void increaseMySkillCount() {
+		mySkillCount++;
+	}
 }
