@@ -1,4 +1,3 @@
-- comment에서 위에꺼 연동하자. (documentId)
 - skill 별로 link를 따로 걸어야 함.
 - 한글깨짐
 - 500 error page
