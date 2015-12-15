@@ -40,12 +40,7 @@ public class DocumentController {
 		return "list";
 	}
 
-	@RequestMapping(value = "new", params = "form", method = RequestMethod.GET)
-	public String createForm(DocumentForm form) {
-		return "edit";
-	}
-
-	@RequestMapping(value = "new", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Validated DocumentForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return list(model);
@@ -60,25 +55,25 @@ public class DocumentController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "edit", params = "form", method = RequestMethod.GET)
-	public String editForm(@RequestParam Integer id, DocumentForm form) {
-		Document document = documentService.findOne(id);
-		BeanUtils.copyProperties(document, form);
-		return "edit";
-	}
-
-	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String edit(@RequestParam Integer id, @Validated DocumentForm form,
-		BindingResult result) {
-		if (result.hasErrors()) {
-			return editForm(id, form);
-		}
-		Document document = new Document();
-		BeanUtils.copyProperties(form, document);
-		document.setId(id);
-		documentService.update(document);
-		return "redirect:/";
-	}
+//	@RequestMapping(value = "edit", params = "form", method = RequestMethod.GET)
+//	public String editForm(@RequestParam Integer id, DocumentForm form) {
+//		Document document = documentService.findOne(id);
+//		BeanUtils.copyProperties(document, form);
+//		return "edit";
+//	}
+//
+//	@RequestMapping(value = "edit", method = RequestMethod.POST)
+//	public String edit(@RequestParam Integer id, @Validated DocumentForm form,
+//		BindingResult result) {
+//		if (result.hasErrors()) {
+//			return editForm(id, form);
+//		}
+//		Document document = new Document();
+//		BeanUtils.copyProperties(form, document);
+//		document.setId(id);
+//		documentService.update(document);
+//		return "redirect:/";
+//	}
 
 	@RequestMapping(value = "edit", params = "goToTop")
 	public String goToTop() {

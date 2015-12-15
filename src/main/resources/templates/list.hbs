@@ -441,11 +441,59 @@
 		</section>
 
 		<div class="container">
-
 			<div class="row">
+				{{!document form}}
+				<div class="col-md-6">
+					<div class="alert alert-success hidden" id="contactSuccess">
+						<strong>Success!</strong> Your message has been sent to us.
+					</div>
+
+					<div class="alert alert-danger hidden" id="contactError">
+						<strong>Error!</strong> There was an error sending your message.
+					</div>
+
+					<h2 class="mb-sm mt-sm">New Document</h2>
+					<form id="documentForm" name="documentForm" accept-charset="UTF-8" method="POST">
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-6">
+									<label>Your name *</label>
+									<input type="text" value="" data-msg-required="Please enter author." maxlength="100" class="form-control" name="userId" id="userId" required>
+								</div>
+								<div class="col-md-6">
+									<label>skill *</label>
+									<input type="text" value="" data-msg-required="Please enter skills." maxlength="100" class="form-control" name="skill" id="skill" required>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-12">
+									<label>Subject</label>
+									<input type="text" value="" data-msg-required="Please enter the title." maxlength="100" class="form-control" name="title" id="title" required>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-12">
+									<label>Message *</label>
+									<textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="content" id="content" required></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<input type="submit" value="Send Message" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">
+							</div>
+						</div>
+					</form>
+				</div>
+
+
 				<div class="col-md-12">
 					<div class="blog-posts">
-
+						{{!document list}}
 						{{#each documents}}
 						<article class="post post-large">
 							<div class="post-date">
