@@ -19,7 +19,7 @@ public class DocumentService {
 	DocumentRepository documentRepository;
 
 	public List<Document> findAll() {
-		return documentRepository.findAll();
+		return documentRepository.findByOrderByIdDesc();
 	}
 
 	public Document findOne(Integer id) {

@@ -1,4 +1,12 @@
+- document form 연동
+- header 삭제
+- trend와 total skill count 표시
+- signup
+- signin
+- form validation
+- skill list
 - skill 별로 link를 따로 걸어야 함.
+- skill page
 - 한글깨짐
 - 500 error page
 - profile: stackoverflow, github
