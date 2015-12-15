@@ -1,6 +1,8 @@
 package com.snack.service;
 
+import com.snack.domain.Document;
 import com.snack.domain.DocumentSkill;
+import com.snack.domain.Skill;
 import com.snack.repository.DocumentSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,11 @@ public class DocumentSkillService {
 	}
 
 	@Transactional
-	public DocumentSkill create(DocumentSkill documentSkill) {
+	public DocumentSkill create(Document managedDocument, Skill managedSkill) {
+		DocumentSkill documentSkill = new DocumentSkill();
+		documentSkill.setDocument(managedDocument);
+		documentSkill.setSkill(managedSkill);
+
 		documentSkill.getDocument().increaseSkillCount();
 		documentSkill.getSkill().increaseDocumentCount();
 		return documentSkillRepository.save(documentSkill);

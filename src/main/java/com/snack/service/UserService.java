@@ -22,7 +22,6 @@ public class UserService {
 		return userRepository.findOne(userId);
 	}
 
-	@Transactional
 	public User create(User user) {
 		return userRepository.save(user);
 	}

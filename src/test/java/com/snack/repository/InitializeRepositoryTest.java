@@ -260,23 +260,14 @@ public class InitializeRepositoryTest {
 	}
 
 	public void createDocumentSkill1() {
-		DocumentSkill documentSkill = new DocumentSkill();
-		documentSkill.setDocument(document1);
-		documentSkill.setSkill(skill1);
-		documentSkill1 = documentSkillService.create(documentSkill);
+		documentSkill1 = documentSkillService.create(document1, skill1);
 	}
 
 	public void createDocumentSkill2() {
-		DocumentSkill documentSkill = new DocumentSkill();
-		documentSkill.setDocument(document1);
-		documentSkill.setSkill(skill2);
-		documentSkill2 = documentSkillService.create(documentSkill);
+		documentSkill1 = documentSkillService.create(document1, skill2);
 	}
 
 	public void createDocumentSkill3() {
-		DocumentSkill documentSkill = new DocumentSkill();
-		documentSkill.setDocument(document2);
-		documentSkill.setSkill(skill1);
-		documentSkill1 = documentSkillService.create(documentSkill);
+		documentSkill1 = documentSkillService.create(document2, skill1);
 	}
 }

@@ -1,10 +1,11 @@
 package com.snack.web;
 
-import com.snack.domain.Comment;
-import com.snack.domain.Document;
-import com.snack.domain.User;
+import com.snack.domain.*;
 import com.snack.service.DocumentService;
+import com.snack.service.DocumentSkillService;
+import com.snack.service.SkillService;
 import com.snack.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,12 @@ public class DocumentController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private DocumentSkillService documentSkillService;
+
+	@Autowired
+	private SkillService skillService;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Document> documents = documentService.findAll();
@@ -45,13 +52,25 @@ public class DocumentController {
 		if (result.hasErrors()) {
 			return list(model);
 		}
+		String[] skillNames = StringUtils.split(form.getSkill(), ",");
+
 		Document document = new Document();
 		BeanUtils.copyProperties(form, document);
 		document.setRegDate(new Date());
 		document.setEditDate(new Date());
 		User author = userService.findOne(form.getUserId());
 		document.setAuthor(author);
-		documentService.create(document);
+		Document managedDocument = documentService.create(document);
+
+		for (String skillName : skillNames) {
+			Skill managedSkill = skillService.findOne(skillName);
+			if (managedSkill == null) {
+				managedSkill = skillService.create(skillName);
+				documentSkillService.create(managedDocument, managedSkill);
+			} else {
+				documentSkillService.create(managedDocument, managedSkill);
+			}
+		}
 		return "redirect:/";
 	}
 
