@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 
 @Getter
@@ -28,4 +29,22 @@ public class Comment {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate = new Date();
+
+	@Transient
+	private String displayRegDate;
+
+	public void displayRegDate() {
+		final String[] MONTHS = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November",
+			"December" };
+		final String[] AM_PM = { "am", "pm" };
+		
+		Calendar calendar = Calendar.getInstance();
+		displayRegDate = new StringBuilder()
+			.append(MONTHS[calendar.get(Calendar.MONTH)]).append(" ")
+			.append(calendar.get(Calendar.DAY_OF_MONTH)).append(", ")
+			.append(calendar.get(Calendar.YEAR)).append(" at ")
+			.append(calendar.get(Calendar.HOUR)).append(":")
+			.append(calendar.get(Calendar.MINUTE)).append(" ")
+			.append(AM_PM[calendar.get(Calendar.AM_PM)]).toString();
+	}
 }

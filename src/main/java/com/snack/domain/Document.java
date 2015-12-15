@@ -85,11 +85,11 @@ public class Document {
 		skillCount++;
 	}
 
-	public void convertDate() {
+	public void displayRegDate() {
 		final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		Calendar instance = Calendar.getInstance();
-		instance.setTime(editDate);
-		month = months[instance.get(Calendar.MONTH)];
-		day = instance.get(Calendar.DAY_OF_MONTH);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(editDate);
+		month = months[calendar.get(Calendar.MONTH)];
+		day = calendar.get(Calendar.DAY_OF_MONTH);
 	}
 }

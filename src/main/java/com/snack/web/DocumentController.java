@@ -1,5 +1,6 @@
 package com.snack.web;
 
+import com.snack.domain.Comment;
 import com.snack.domain.Document;
 import com.snack.domain.User;
 import com.snack.service.DocumentService;
@@ -30,7 +31,10 @@ public class DocumentController {
 	public String list(Model model) {
 		List<Document> documents = documentService.findAll();
 		for (Document document : documents) {
-			document.convertDate();
+			document.displayRegDate();
+			for(Comment comment : document.getComments()) {
+				comment.displayRegDate();
+			}
 		}
 		model.addAttribute("documents", documents);
 		return "list";
