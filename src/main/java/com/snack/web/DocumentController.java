@@ -29,6 +29,9 @@ public class DocumentController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Document> documents = documentService.findAll();
+		for (Document document : documents) {
+			document.convertDate();
+		}
 		model.addAttribute("documents", documents);
 		return "list";
 	}

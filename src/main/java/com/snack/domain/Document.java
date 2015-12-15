@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,12 @@ public class Document {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date editDate = new Date();
+
+	@Transient
+	private String month;
+
+	@Transient
+	private int day;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
@@ -76,5 +83,13 @@ public class Document {
 
 	public void increaseSkillCount() {
 		skillCount++;
+	}
+
+	public void convertDate() {
+		final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+		Calendar instance = Calendar.getInstance();
+		instance.setTime(editDate);
+		month = months[instance.get(Calendar.MONTH)];
+		day = instance.get(Calendar.DAY_OF_MONTH);
 	}
 }
