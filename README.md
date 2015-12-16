@@ -8,7 +8,6 @@
 - signin
 - form validation
 - user profile (timeline, stackoverflow, github참고)
-- skill list (우측)
 - skill 별로 link를 따로 걸어야 함.
 - skill page
 - 한글깨짐

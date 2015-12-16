@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface DocumentRepository extends JpaRepository<Document, Integer> {
-	public List<Document> findByOrderByIdDesc();
+	List<Document> findByOrderByIdDesc();
 }

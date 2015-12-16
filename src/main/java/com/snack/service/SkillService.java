@@ -15,7 +15,7 @@ public class SkillService {
 	SkillRepository skillRepository;
 
 	public List<Skill> findAll() {
-		return skillRepository.findAll();
+		return skillRepository.findByOrderByDocumentCountDesc();
 	}
 
 	public Skill findOne(Integer id) {

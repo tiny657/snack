@@ -46,7 +46,9 @@ public class DocumentController {
 				comment.displayRegDate();
 			}
 		}
+		List<Skill> skills = skillService.findAll();
 		model.addAttribute("documents", documents);
+		model.addAttribute("skills", skills);
 		return "list";
 	}
 
