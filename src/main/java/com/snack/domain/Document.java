@@ -58,10 +58,10 @@ public class Document {
 	private Integer keeperCount = 0;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-	private List<DocumentReader> readers = Lists.newArrayList();
+	private List<DocumentViewer> viewers = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer readerCount = 0;
+	private Integer viewerCount = 0;
 
 	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
 	private List<DocumentSkill> skills = Lists.newArrayList();
@@ -77,8 +77,8 @@ public class Document {
 		keeperCount++;
 	}
 
-	public void increaseReaderCount() {
-		readerCount++;
+	public void increaseViewerCount() {
+		viewerCount++;
 	}
 
 	public void increaseSkillCount() {

@@ -37,11 +37,11 @@ public class User {
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer myCommentCount = 0;
 
-	@OneToMany(mappedBy = "reader", cascade = CascadeType.ALL)
-	private List<DocumentReader> myReadDocuments = Lists.newArrayList();
+	@OneToMany(mappedBy = "viewer", cascade = CascadeType.ALL)
+	private List<DocumentViewer> myViewDocuments = Lists.newArrayList();
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer myReadDocumentCount = 0;
+	private Integer myViewDocumentCount = 0;
 
 	@OneToMany(mappedBy = "keeper", cascade = CascadeType.ALL)
 	private List<DocumentKeeper> myKeepDocuments = Lists.newArrayList();
@@ -66,8 +66,8 @@ public class User {
 		myDocumentCount++;
 	}
 
-	public void increaseMyReadDocumentCount() {
-		myReadDocumentCount++;
+	public void increaseMyViewDocumentCount() {
+		myViewDocumentCount++;
 	}
 
 	public void increaseMyCommentCount() {

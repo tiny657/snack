@@ -29,7 +29,7 @@ public class InitializeRepositoryTest {
 	DocumentKeeperService documentKeeperService;
 
 	@Autowired
-	DocumentReaderService documentReaderService;
+	DocumentViewerService documentViewerService;
 
 	@Autowired
 	NotificationRepository notificationRepository;
@@ -53,7 +53,7 @@ public class InitializeRepositoryTest {
 	Document document1, document2;
 	Comment comment1, comment2;
 	DocumentKeeper documentKeeper1, documentKeeper2, documentKeeper3, documentKeeper4, documentKeeper5;
-	DocumentReader documentReader1, documentReader2;
+	DocumentViewer documentViewer1, documentViewer2;
 	Notification notification1, notification2;
 	Skill skill1, skill2;
 	SkillOwner skillOwner1, skillOwner2;
@@ -92,8 +92,8 @@ public class InitializeRepositoryTest {
 		createDocumentKeeper3();
 		createDocumentKeeper4();
 		createDocumentKeeper5();
-		createDocumentReader1();
-		createDocumentReader2();
+		createDocumentViewer1();
+		createDocumentViewer2();
 		createSkillOwner1();
 		createDocumentSkill1();
 		createDocumentSkill2();
@@ -215,18 +215,18 @@ public class InitializeRepositoryTest {
 		documentKeeper5 = documentKeeperService.create(documentKeeper);
 	}
 
-	public void createDocumentReader1() {
-		DocumentReader documentReader = new DocumentReader();
-		documentReader.setDocument(document1);
-		documentReader.setReader(user1);
-		documentReaderService.create(documentReader);
+	public void createDocumentViewer1() {
+		DocumentViewer documentViewer = new DocumentViewer();
+		documentViewer.setDocument(document1);
+		documentViewer.setViewer(user1);
+		documentViewerService.create(documentViewer);
 	}
 
-	public void createDocumentReader2() {
-		DocumentReader documentReader = new DocumentReader();
-		documentReader.setDocument(document2);
-		documentReader.setReader(user1);
-		documentReaderService.create(documentReader);
+	public void createDocumentViewer2() {
+		DocumentViewer documentViewer = new DocumentViewer();
+		documentViewer.setDocument(document2);
+		documentViewer.setViewer(user1);
+		documentViewerService.create(documentViewer);
 	}
 
 	public void createSkill1() {

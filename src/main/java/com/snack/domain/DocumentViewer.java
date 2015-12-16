@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class DocumentReader {
+public class DocumentViewer {
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -20,7 +20,7 @@ public class DocumentReader {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
-	private User reader;
+	private User viewer;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
