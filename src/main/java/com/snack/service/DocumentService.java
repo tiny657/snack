@@ -28,8 +28,6 @@ public class DocumentService {
 
 	public Document create(Document document) {
 		document.getAuthor().increaseMyDocumentCount();
-		// TODO: 기존에 이미 있으면 증가하지 말자.
-		document.getAuthor().increaseMySkillCount();
 		return documentRepository.save(document);
 	}
 

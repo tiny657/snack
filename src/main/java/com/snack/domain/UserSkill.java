@@ -14,10 +14,17 @@ public class UserSkill {
 	private Integer id;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "skill_id")
 	private Skill skill;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+	private Integer skillCount = 0;
+
+	public void increaseSkillCount() {
+		skillCount++;
+	}
 }

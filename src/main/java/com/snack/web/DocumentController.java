@@ -1,10 +1,10 @@
 package com.snack.web;
 
-import com.snack.domain.*;
-import com.snack.service.DocumentService;
-import com.snack.service.DocumentSkillService;
-import com.snack.service.SkillService;
-import com.snack.service.UserService;
+import com.snack.domain.Comment;
+import com.snack.domain.Document;
+import com.snack.domain.Skill;
+import com.snack.domain.User;
+import com.snack.service.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,9 @@ public class DocumentController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private UserSkillService userSkillService;
 
 	@Autowired
 	private DocumentSkillService documentSkillService;
@@ -64,12 +67,14 @@ public class DocumentController {
 
 		for (String skillName : skillNames) {
 			Skill managedSkill = skillService.findOne(skillName);
+
 			if (managedSkill == null) {
 				managedSkill = skillService.create(skillName);
 				documentSkillService.create(managedDocument, managedSkill);
 			} else {
 				documentSkillService.create(managedDocument, managedSkill);
 			}
+			userSkillService.create(author, managedSkill);
 		}
 		return "redirect:/";
 	}

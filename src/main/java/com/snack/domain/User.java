@@ -52,9 +52,6 @@ public class User {
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<SkillOwner> mySkills = Lists.newArrayList();
 
-	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
-	private Integer mySkillCount = 0;
-
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
 	private List<Notification> notifications = Lists.newArrayList();
 
@@ -79,9 +76,5 @@ public class User {
 
 	public void increaseMyKeepCount() {
 		myKeepCount++;
-	}
-
-	public void increaseMySkillCount() {
-		mySkillCount++;
 	}
 }

@@ -1,5 +1,3 @@
-- skill 처리
-- UserSkill 관계 DB 필요
 - document 수정 기능
 - comment 수정 기능
 - DB index 확인 (@Index 안됨)
