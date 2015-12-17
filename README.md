@@ -1,3 +1,5 @@
+- signup
+- signin
 - skill page
 - user profile (timeline, stackoverflow, github참고)
 - document 수정 기능
@@ -5,10 +7,7 @@
 - DB index 확인 (@Index 안됨)
 - header 삭제
 - trend와 total skill count 표시
-- signup
-- signin
 - form validation
-- 한글깨짐
 - 500 error page
 
 - 운영

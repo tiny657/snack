@@ -64,16 +64,16 @@ public class InitializeRepositoryTest {
 	@Test
 	@Rollback(false)
 	public void initialize() {
-		userService.deleteAll();
-		documentService.deleteAll();
-		commentService.deleteAll();
-		documentKeeperService.deleteAll();
-		notificationRepository.deleteAll();
-		skillRepository.deleteAll();
-		skillOwnerRepository.deleteAll();
-		skillOwnerHistoryRepository.deleteAll();
-		documentSkillService.deleteAll();
 		documentSkillHistoryRepository.deleteAll();
+		documentSkillService.deleteAll();
+		skillOwnerHistoryRepository.deleteAll();
+		skillOwnerRepository.deleteAll();
+		documentKeeperService.deleteAll();
+		commentService.deleteAll();
+		documentService.deleteAll();
+		skillRepository.deleteAll();
+		notificationRepository.deleteAll();
+		userService.deleteAll();
 
 		createUser1();
 		createUser2();
