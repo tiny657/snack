@@ -421,7 +421,6 @@
 	</header>
 
 	<div role="main" class="main">
-
 		<section class="page-header">
 			<div class="container">
 				<div class="row">
@@ -442,104 +441,54 @@
 
 		<div class="container">
 			<div class="row">
-				{{!document form}}
-				<!--<div class="col-md-9">-->
-					<!--<div class="alert alert-success hidden" id="contactSuccess">-->
-						<!--<strong>Success!</strong> Your message has been sent to us.-->
-					<!--</div>-->
-
-					<!--<div class="alert alert-danger hidden" id="contactError">-->
-						<!--<strong>Error!</strong> There was an error sending your message.-->
-					<!--</div>-->
-
-					<!--<h2 class="mb-sm mt-sm">New Document</h2>-->
-					<!--<form id="documentForm" name="documentForm" accept-charset="UTF-8" method="POST">-->
-						<!--<div class="row">-->
-							<!--<div class="form-group">-->
-								<!--<div class="col-md-6">-->
-									<!--<label>Your name *</label>-->
-									<!--<input type="text" value="" data-msg-required="Please enter author." maxlength="100" class="form-control" name="userId" id="userId" required>-->
-								<!--</div>-->
-								<!--<div class="col-md-6">-->
-									<!--<label>skill *</label>-->
-									<!--<input type="text" value="" data-msg-required="Please enter skills." maxlength="100" class="form-control" name="skill" id="skill" required>-->
-								<!--</div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<div class="row">-->
-							<!--<div class="form-group">-->
-								<!--<div class="col-md-12">-->
-									<!--<label>Subject</label>-->
-									<!--<input type="text" value="" data-msg-required="Please enter the title." maxlength="100" class="form-control" name="title" id="title" required>-->
-								<!--</div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<div class="row">-->
-							<!--<div class="form-group">-->
-								<!--<div class="col-md-12">-->
-									<!--<label>Message *</label>-->
-									<!--<textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="content" id="content" required></textarea>-->
-								<!--</div>-->
-							<!--</div>-->
-						<!--</div>-->
-						<!--<div class="row">-->
-							<!--<div class="col-md-12">-->
-								<!--<input type="submit" value="Send Message" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</form>-->
-				<!--</div>-->
-
 
 				{{!markdown document form}}
 				<div class="col-md-9">
-					<form id="documentForm" name="documentForm" class="form-horizontal form-bordered" accept-charset="UTF-8" method="POST">
-						<div class="row">
-							<section class="panel">
-								<header class="panel-heading">
-									<div class="panel-actions">
-										<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-									</div>
-
-									<h2 class="panel-title">New Document</h2>
-								</header>
-
-								<div class="row">
-									<div class="form-group">
-										<div class="col-md-12">
-											<label>Your name *</label>
-											<input type="text" value="" data-msg-required="Please enter author." maxlength="100" class="form-control" name="userId" id="userId" tabindex="1" required>
-										</div>
+					<div class="post-block post-leave-comment">
+						<h3 class="heading-primary">New Document</h3>
+						<form id="documentForm" name="documentForm" accept-charset="UTF-8" method="POST">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label>Your name *</label>
+										<input type="text" value="" data-msg-required="Please enter author." maxlength="100" class="form-control" name="userId" id="userId" tabindex="1" required>
 									</div>
 								</div>
-								<div class="row">
-									<div class="form-group">
-										<div class="col-md-12">
-											<label>Title</label>
-											<input type="text" value="" data-msg-required="Please enter the title." data-plugin-maxlength maxlength="100" class="form-control" name="title" id="title" tabindex="2" required>
-										</div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="form-group">
-										<div class="col-md-12">
-												<textarea data-plugin-markdown-editor rows="10" name="content" id="content" tabindex="3"></textarea>
-										</div>
-									</div>
-								</div>
-
-								<label>Skill</label>
-								<input name="skill" id="skill" data-role="tagsinput" data-tag-class="label label-primary" class="form-control" value="" />
-
-							</section>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<input type="submit" value="Send Message" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">
 							</div>
-						</div>
-					</form>
+
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label>Title</label>
+										<input type="text" value="" data-msg-required="Please enter the title." data-plugin-maxlength maxlength="100" class="form-control" name="title" id="title" tabindex="2" required>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+											<textarea data-plugin-markdown-editor rows="10" name="content" id="content" tabindex="3"></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label>Skill</label>
+										<input name="skill" id="skill" data-role="tagsinput" data-tag-class="label label-primary" class="form-control" value="" />
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<input type="submit" value="Post Document" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 
 				{{!skills}}
