@@ -1,3 +1,4 @@
+- spring boot version 1.2.4 -> 1.3.1 로 변경 필요
 - New Document 상단에 줄 없애기 (css: post-block)
 - Post Comment 버튼 앞에 여백은 (form-group의 하단 여백 15px가 무시되어서 because theme-admin-extension.css)
 
