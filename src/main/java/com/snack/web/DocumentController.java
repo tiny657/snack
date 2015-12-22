@@ -41,6 +41,7 @@ public class DocumentController {
 	public String list(Model model) {
 		List<Document> documents = documentService.findAll();
 		for (Document document : documents) {
+			document.htmlContent();
 			document.displayRegDate();
 			for(Comment comment : document.getComments()) {
 				comment.displayRegDate();

@@ -1,8 +1,10 @@
 package com.snack.domain;
 
+import com.github.rjeschke.txtmark.Processor;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -26,6 +28,9 @@ public class Document {
 
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String content;
+
+	@Transient
+	private String htmlContent;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -85,8 +90,12 @@ public class Document {
 		skillCount++;
 	}
 
+	public void htmlContent() {
+		htmlContent = Processor.process(StringEscapeUtils.escapeHtml4(content));
+	}
+
 	public void displayRegDate() {
-		final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+		final String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(editDate);
 		month = months[calendar.get(Calendar.MONTH)];
