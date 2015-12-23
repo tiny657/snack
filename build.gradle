@@ -1,6 +1,5 @@
 buildscript {
-    repositories() {
-        mavenCentral()
+    repositories {
         maven { url "http://repo.spring.io/plugins-release" }
     }
     dependencies {
@@ -29,6 +28,7 @@ jar {
 
 repositories {
     mavenCentral()
+    maven { url "https://repo.spring.io/libs-milestone" }
 }
 
 sourceCompatibility = 1.8
@@ -50,4 +50,8 @@ dependencies {
 //    compile("org.flywaydb:flyway-core")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
 }
