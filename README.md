@@ -1,6 +1,7 @@
-- user profile (timeline, stackoverflow, github참고)
 - signup
 - signin
+
+- user profile (timeline, stackoverflow, github참고)
 - skill page
 - document 수정 기능
 - comment 수정 기능
