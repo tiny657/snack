@@ -1,7 +1,10 @@
 - signup
 - signin
 
+- domain, repository가 아닌 기능별로 package 분리
+
 - user profile (timeline, stackoverflow, github참고)
+- user activity
 - skill page
 - document 수정 기능
 - comment 수정 기능
