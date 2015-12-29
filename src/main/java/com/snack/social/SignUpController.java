@@ -1,7 +1,7 @@
 package com.snack.social;
 
-import com.snack.domain.User;
-import com.snack.service.UserService;
+import com.snack.user.User;
+import com.snack.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

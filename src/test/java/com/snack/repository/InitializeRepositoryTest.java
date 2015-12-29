@@ -1,8 +1,16 @@
 package com.snack.repository;
 
 import com.snack.App;
-import com.snack.domain.*;
-import com.snack.service.*;
+import com.snack.comment.Comment;
+import com.snack.comment.CommentService;
+import com.snack.document.Document;
+import com.snack.document.DocumentService;
+import com.snack.document.meta.*;
+import com.snack.notification.Notification;
+import com.snack.notification.NotificationRepository;
+import com.snack.skill.*;
+import com.snack.user.User;
+import com.snack.user.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

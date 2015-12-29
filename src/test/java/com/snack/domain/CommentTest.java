@@ -1,5 +1,6 @@
 package com.snack.domain;
 
+import com.snack.comment.Comment;
 import org.junit.Test;
 
 import java.util.Date;
