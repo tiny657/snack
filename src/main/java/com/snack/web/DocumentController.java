@@ -5,9 +5,11 @@ import com.snack.domain.Document;
 import com.snack.domain.Skill;
 import com.snack.domain.User;
 import com.snack.service.*;
+import com.snack.social.FrontUserDetail;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,7 +40,12 @@ public class DocumentController {
 	private SkillService skillService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model) {
+	public String list(@AuthenticationPrincipal FrontUserDetail userDetail, Model model) {
+		if (userDetail != null) {
+			model.addAttribute("email", userDetail.getUsername());
+			model.addAttribute("name", userDetail.getNickName());
+		}
+
 		List<Document> documents = documentService.findAll();
 		for (Document document : documents) {
 			document.htmlContent();
@@ -56,7 +63,7 @@ public class DocumentController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Validated DocumentForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return list(model);
+			return "redirect:/";
 		}
 		String[] skillNames = StringUtils.split(form.getSkill(), ",");
 

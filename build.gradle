@@ -3,8 +3,6 @@ buildscript {
         maven { url "http://repo.spring.io/plugins-release" }
     }
     dependencies {
-//        classpath 'com.h2database:h2:1.3.170'
-//        classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
         classpath("mysql:mysql-connector-java:5.1.34")
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
         classpath("org.springframework.build.gradle:propdeps-plugin:0.0.7")
@@ -18,7 +16,6 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'propdeps'
 apply plugin: 'propdeps-idea'
-//apply plugin: 'flyway'
 
 
 jar {
@@ -36,6 +33,11 @@ targetCompatibility = 1.8
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.social:spring-social-security")
+    compile("org.springframework.social:spring-social-config")
+    compile("org.springframework.social:spring-social-facebook")
+    compile("org.springframework.session:spring-session")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework.social:spring-social-facebook")
 	compile("pl.allegro.tech.boot:handlebars-spring-boot-starter:0.2.4")
