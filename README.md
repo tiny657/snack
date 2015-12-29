@@ -1,5 +1,3 @@
-- logout 처리 (signup, signin)
-
 - domain, repository가 아닌 기능별로 package 분리
 
 - user profile (timeline, stackoverflow, github참고)
