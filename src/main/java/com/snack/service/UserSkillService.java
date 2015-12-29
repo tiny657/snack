@@ -26,20 +26,16 @@ public class UserSkillService {
 
 	@Transactional
 	public UserSkill create(User managedUser, Skill managedSkill) {
-		//		List<UserSkill> managedUserSkill = userSkillRepository.findByUserAndSkill(managedUser, managedSkill);
 		UserSkill managedUserSkill = userSkillRepository.findByUserAndSkill(managedUser, managedSkill);
 		if (managedUserSkill == null) {
 			UserSkill userSkill = new UserSkill();
 			userSkill.setUser(managedUser);
 			userSkill.setSkill(managedSkill);
 			userSkill.setSkillCount(1);
-			//			managedUserSkill.add(userSkillRepository.save(userSkill));
 			userSkillRepository.save(userSkill);
 		} else {
 			managedUserSkill.increaseSkillCount();
-			//			managedUserSkill.get(0).increaseSkillCount();
 		}
-		//		return managedUserSkill.get(0);
 		return managedUserSkill;
 	}
 

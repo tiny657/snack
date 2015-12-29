@@ -1,5 +1,7 @@
 package com.snack.social;
 
+import com.snack.domain.User;
+import com.snack.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.Date;
+
 @Controller
 public class SignUpController {
 
@@ -20,7 +24,10 @@ public class SignUpController {
 	private ProviderSignInUtils providerSignInUtils;
 
 	@Autowired
-	private SocialUserService userService;
+	private SocialUserService socialUserService;
+
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String redirectRequestToRegistrationPage(WebRequest request, ModelMap modelMap) {
@@ -30,10 +37,16 @@ public class SignUpController {
 		UserCreateRequestVO userCreateRequestVO = UserCreateRequestVO.fromSocialUserProfile(userProfile);
 
 		try {
-			SocialUser user = userService.create(userCreateRequestVO);
-			providerSignInUtils.doPostSignUp(user.getEmail(), request);
+			User user = new User();
+			user.setUserId(userCreateRequestVO.getEmail());
+			user.setRegDate(new Date());
+			user.setName(userCreateRequestVO.getLastName() + userCreateRequestVO.getFirstName());
+			userService.create(user);
 
-			FrontUserDetail frontUserDetail = new FrontUserDetail(user);
+			SocialUser socialUser = socialUserService.create(userCreateRequestVO);
+			providerSignInUtils.doPostSignUp(socialUser.getEmail(), request);
+
+			FrontUserDetail frontUserDetail = new FrontUserDetail(socialUser);
 
 			Authentication authentication = new UsernamePasswordAuthenticationToken(frontUserDetail, null, frontUserDetail.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -43,21 +56,4 @@ public class SignUpController {
 
 		return "redirect:/";
 	}
-//
-//	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-//	public String registrationUser(@ModelAttribute UserCreateRequestVO userCreateRequestVO, WebRequest request) throws Exception {
-//		try {
-//			User user = userService.create(userCreateRequestVO);
-//			providerSignInUtils.doPostSignUp(user.getEmail(), request);
-//
-//			FrontUserDetail frontUserDetail = new FrontUserDetail(user);
-//
-//			Authentication authentication = new UsernamePasswordAuthenticationToken(frontUserDetail, null, frontUserDetail.getAuthorities());
-//			SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//			return "redirect:/";
-//		} catch (Exception e) {
-//			return String.format("redirect:/error?message=%s", e.getMessage());
-//		}
-//	}
 }

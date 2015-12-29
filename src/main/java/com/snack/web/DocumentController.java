@@ -50,9 +50,7 @@ public class DocumentController {
 		for (Document document : documents) {
 			document.htmlContent();
 			document.displayRegDate();
-			for(Comment comment : document.getComments()) {
-				comment.displayRegDate();
-			}
+			document.getComments().forEach(Comment::displayRegDate);
 		}
 		List<Skill> skills = skillService.findAll();
 		model.addAttribute("documents", documents);
@@ -61,7 +59,7 @@ public class DocumentController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(@Validated DocumentForm form, BindingResult result, Model model) {
+	public String create(@Validated DocumentForm form, BindingResult result, @AuthenticationPrincipal FrontUserDetail userDetail, Model model) {
 		if (result.hasErrors()) {
 			return "redirect:/";
 		}
@@ -71,7 +69,7 @@ public class DocumentController {
 		BeanUtils.copyProperties(form, document);
 		document.setRegDate(new Date());
 		document.setEditDate(new Date());
-		User author = userService.findOne(form.getUserId());
+		User author = userService.findOne(userDetail.getUsername());
 		document.setAuthor(author);
 		Document managedDocument = documentService.create(document);
 
@@ -88,26 +86,6 @@ public class DocumentController {
 		}
 		return "redirect:/";
 	}
-
-//	@RequestMapping(value = "edit", params = "form", method = RequestMethod.GET)
-//	public String editForm(@RequestParam Integer id, DocumentForm form) {
-//		Document document = documentService.findOne(id);
-//		BeanUtils.copyProperties(document, form);
-//		return "edit";
-//	}
-//
-//	@RequestMapping(value = "edit", method = RequestMethod.POST)
-//	public String edit(@RequestParam Integer id, @Validated DocumentForm form,
-//		BindingResult result) {
-//		if (result.hasErrors()) {
-//			return editForm(id, form);
-//		}
-//		Document document = new Document();
-//		BeanUtils.copyProperties(form, document);
-//		document.setId(id);
-//		documentService.update(document);
-//		return "redirect:/";
-//	}
 
 	@RequestMapping(value = "edit", params = "goToTop")
 	public String goToTop() {

@@ -1,4 +1,8 @@
+- 로그인 안 하면 글 못 쓰게 하자.
+- imageUrl도 profile에 추가하자.
 - domain, repository가 아닌 기능별로 package 분리
+- CrudRepository -> JpaRepository
+- header가 없는 것으로 변경 필요
 
 - user profile (timeline, stackoverflow, github참고)
 - user activity
