@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,10 +43,11 @@ public class DocumentController {
 	private SkillService skillService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(@AuthenticationPrincipal FrontUserDetail userDetail, Model model) {
-		if (userDetail != null) {
-			model.addAttribute("email", userDetail.getUsername());
-			model.addAttribute("name", userDetail.getName());
+	public String list(@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
+		if (!ObjectUtils.isEmpty(frontUserDetail)) {
+			model.addAttribute("email", frontUserDetail.getUsername());
+			model.addAttribute("name", frontUserDetail.getName());
+			model.addAttribute("imageUrl", frontUserDetail.getSocialUser());
 		}
 
 		List<Document> documents = documentService.findAll();
@@ -61,17 +63,21 @@ public class DocumentController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(@Validated DocumentForm form, BindingResult result, @AuthenticationPrincipal FrontUserDetail userDetail, Model model) {
+	public String create(@Validated DocumentForm form, BindingResult result, @AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
 		if (result.hasErrors()) {
 			return "redirect:/";
 		}
+		if (frontUserDetail == null) {
+			return "redirect:/";
+		}
+
 		String[] skillNames = StringUtils.split(form.getSkill(), ",");
 
 		Document document = new Document();
 		BeanUtils.copyProperties(form, document);
 		document.setRegDate(new Date());
 		document.setEditDate(new Date());
-		User author = userService.findOne(userDetail.getUsername());
+		User author = userService.findOne(frontUserDetail.getUsername());
 		document.setAuthor(author);
 		Document managedDocument = documentService.create(document);
 
@@ -80,10 +86,8 @@ public class DocumentController {
 
 			if (managedSkill == null) {
 				managedSkill = skillService.create(skillName);
-				documentSkillService.create(managedDocument, managedSkill);
-			} else {
-				documentSkillService.create(managedDocument, managedSkill);
 			}
+			documentSkillService.create(managedDocument, managedSkill);
 			userSkillService.create(author, managedSkill);
 		}
 		return "redirect:/";

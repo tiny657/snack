@@ -24,7 +24,7 @@ public class SocialUser implements Serializable {
 	@Column(name = "email", length = 100)
 	private String email;
 
-	public static SocialUser fromVO(UserProfileDto userProfileDto) {
+	public static SocialUser fromDto(UserProfileDto userProfileDto) {
 		SocialUser socialUser = new SocialUser();
 
 		socialUser.setLastName(userProfileDto.getLastName());
