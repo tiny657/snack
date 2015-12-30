@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 @EnableWebSecurity
@@ -26,38 +25,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
 		http
-				.csrf()
+			.csrf()
 			.disable().anonymous()
 			.and()
-				.formLogin().loginPage("/login")
-				.defaultSuccessUrl("/", true)
-				.loginProcessingUrl("/login/authenticate")
-//				.failureHandler(new CustomLoginFailureHandler())
+			.formLogin().loginPage("/login")
+			.defaultSuccessUrl("/", true)
+			.loginProcessingUrl("/login/authenticate")
 			.and()
-				.logout()
-				.deleteCookies("SESSION")
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/")
-//			.and()
-//				.authorizeRequests()
-//				.antMatchers(
-//						"/auth/**",
-//						"/login",
-//						"/error",
-//						"/signup",
-//						"/css/**",
-//						"/js/**"
-//				).permitAll()
-//				.antMatchers("/**").hasRole("USER")
+			.logout()
+			.deleteCookies("SESSION")
+			.logoutUrl("/logout")
+			.logoutSuccessUrl("/")
 			.and()
-				.apply(new SpringSocialConfigurer());
-	}
-
-	@Bean
-	public SocialUserDetailsService socialUsersDetailService() {
-		return new SnackSocialUserDetailsService(userDetailsService);
+			.apply(new SpringSocialConfigurer());
 	}
 
 	@Bean

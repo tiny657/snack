@@ -9,8 +9,10 @@ import com.snack.document.meta.*;
 import com.snack.notification.Notification;
 import com.snack.notification.NotificationRepository;
 import com.snack.skill.*;
+import com.snack.social.SocialUserRepository;
 import com.snack.user.User;
 import com.snack.user.UserService;
+import com.snack.user.UserSkillRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,12 @@ public class InitializeRepositoryTest {
 	@Autowired
 	DocumentSkillHistoryRepository documentSkillHistoryRepository;
 
+	@Autowired
+	UserSkillRepository userSkillRepository;
+
+	@Autowired
+	SocialUserRepository socialUserRepository;
+
 	User user1, user2, user3, user4;
 	Document document1, document2;
 	Comment comment1, comment2;
@@ -71,11 +79,31 @@ public class InitializeRepositoryTest {
 
 	@Test
 	@Rollback(false)
-	public void initialize() {
+	public void delete() {
+		socialUserRepository.deleteAll();
 		documentSkillHistoryRepository.deleteAll();
 		documentSkillService.deleteAll();
 		skillOwnerHistoryRepository.deleteAll();
 		skillOwnerRepository.deleteAll();
+		userSkillRepository.deleteAll();
+		documentKeeperService.deleteAll();
+		commentService.deleteAll();
+		documentService.deleteAll();
+		skillRepository.deleteAll();
+		notificationRepository.deleteAll();
+		userService.deleteAll();
+	}
+
+
+	@Test
+	@Rollback(false)
+	public void initialize() {
+		socialUserRepository.deleteAll();
+		documentSkillHistoryRepository.deleteAll();
+		documentSkillService.deleteAll();
+		skillOwnerHistoryRepository.deleteAll();
+		skillOwnerRepository.deleteAll();
+		userSkillRepository.deleteAll();
 		documentKeeperService.deleteAll();
 		commentService.deleteAll();
 		documentService.deleteAll();

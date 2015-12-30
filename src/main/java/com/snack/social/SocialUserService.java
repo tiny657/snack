@@ -10,8 +10,8 @@ public class SocialUserService {
 	@Autowired
 	private SocialUserRepository socialUserRepository;
 
-	public SocialUser create(UserCreateRequestVO userCreateRequestVO) throws DuplicateEmailException {
-		SocialUser socialUser = SocialUser.fromVO(userCreateRequestVO);
+	public SocialUser create(UserProfileDto userProfileDto) throws DuplicateEmailException {
+		SocialUser socialUser = SocialUser.fromVO(userProfileDto);
 
 		if(existUser(socialUser.getEmail())) {
 			throw new DuplicateEmailException("already registered email address");

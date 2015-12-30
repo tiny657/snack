@@ -24,12 +24,12 @@ public class SocialUser implements Serializable {
 	@Column(name = "email", length = 100)
 	private String email;
 
-	public static SocialUser fromVO(UserCreateRequestVO userCreateRequestVO) {
+	public static SocialUser fromVO(UserProfileDto userProfileDto) {
 		SocialUser socialUser = new SocialUser();
 
-		socialUser.setLastName(userCreateRequestVO.getLastName());
-		socialUser.setFirstName(userCreateRequestVO.getFirstName());
-		socialUser.setEmail(userCreateRequestVO.getEmail());
+		socialUser.setLastName(userProfileDto.getLastName());
+		socialUser.setFirstName(userProfileDto.getFirstName());
+		socialUser.setEmail(userProfileDto.getEmail());
 
 		return socialUser;
 	}

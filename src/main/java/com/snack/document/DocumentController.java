@@ -45,7 +45,7 @@ public class DocumentController {
 	public String list(@AuthenticationPrincipal FrontUserDetail userDetail, Model model) {
 		if (userDetail != null) {
 			model.addAttribute("email", userDetail.getUsername());
-			model.addAttribute("name", userDetail.getNickName());
+			model.addAttribute("name", userDetail.getName());
 		}
 
 		List<Document> documents = documentService.findAll();

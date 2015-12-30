@@ -1,5 +1,6 @@
 package com.snack.social;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.social.security.SocialUserDetails;
@@ -7,6 +8,7 @@ import org.springframework.social.security.SocialUserDetails;
 import java.util.Collection;
 import java.util.HashSet;
 
+@Getter
 public class FrontUserDetail implements SocialUserDetails {
 
 	private static final long serialVersionUID = 5197941260523577515L;
@@ -50,7 +52,7 @@ public class FrontUserDetail implements SocialUserDetails {
 		return socialUser.getLastName();
 	}
 
-	public String getNickName() {
+	public String getName() {
 		return getLastName() + getFirstName();
 	}
 

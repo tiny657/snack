@@ -34,16 +34,16 @@ public class SignUpController {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		UserProfile userProfile = connection.fetchUserProfile();
 
-		UserCreateRequestVO userCreateRequestVO = UserCreateRequestVO.fromSocialUserProfile(userProfile);
+		UserProfileDto userProfileDto = UserProfileDto.fromSocialUserProfile(userProfile);
 
 		try {
 			User user = new User();
-			user.setUserId(userCreateRequestVO.getEmail());
+			user.setUserId(userProfileDto.getEmail());
 			user.setRegDate(new Date());
-			user.setName(userCreateRequestVO.getLastName() + userCreateRequestVO.getFirstName());
+			user.setName(userProfileDto.getLastName() + userProfileDto.getFirstName());
 			userService.create(user);
 
-			SocialUser socialUser = socialUserService.create(userCreateRequestVO);
+			SocialUser socialUser = socialUserService.create(userProfileDto);
 			providerSignInUtils.doPostSignUp(socialUser.getEmail(), request);
 
 			FrontUserDetail frontUserDetail = new FrontUserDetail(socialUser);
