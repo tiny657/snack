@@ -1,4 +1,4 @@
-package com.snack;
+package com.snack.configuration;
 
 import net.sf.log4jdbc.Log4jdbcProxyDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
-public class AppConfig {
+public class DatabaseConfig {
     @Autowired
     private DataSourceProperties dataSourceProperties;
     private DataSource dataSource;
