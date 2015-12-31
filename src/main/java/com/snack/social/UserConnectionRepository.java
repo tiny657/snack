@@ -1,4 +1,4 @@
-package com.snack.user;
+package com.snack.social;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

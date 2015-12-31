@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.connect.Connection;
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
@@ -29,25 +30,32 @@ public class SignUpController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	ConnectionRepository connectionRepository;
+
+	@Autowired
+	private UserConnectionRepository userConnectionRepository;
+
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String redirectRequestToRegistrationPage(WebRequest request, ModelMap modelMap) {
+	public String signup(WebRequest request, ModelMap modelMap) {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		UserProfile userProfile = connection.fetchUserProfile();
 
-		UserProfileDto userProfileDto = UserProfileDto.fromSocialUserProfile(userProfile);
+		UserProfileDto userProfileDto = UserProfileDto.fromUserProfile(userProfile);
 
 		try {
+			// User
 			User user = new User();
 			user.setUserId(userProfileDto.getEmail());
 			user.setRegDate(new Date());
-			user.setName(userProfileDto.getLastName() + userProfileDto.getFirstName());
+			user.setName(userProfileDto.getName());
 			userService.create(user);
 
+			// UserConnection
 			SocialUser socialUser = socialUserService.create(userProfileDto);
 			providerSignInUtils.doPostSignUp(socialUser.getEmail(), request);
 
 			FrontUserDetail frontUserDetail = new FrontUserDetail(socialUser);
-
 			Authentication authentication = new UsernamePasswordAuthenticationToken(frontUserDetail, null, frontUserDetail.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		} catch (Exception e) {

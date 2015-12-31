@@ -21,7 +21,7 @@ public class UserProfileDto {
 		return lastName + firstName;
 	}
 
-	public static UserProfileDto fromSocialUserProfile(UserProfile userProfile) {
+	public static UserProfileDto fromUserProfile(UserProfile userProfile) {
 		UserProfileDto userProfileDto = new UserProfileDto();
 		BeanUtils.copyProperties(userProfile, userProfileDto, UserProfileDto.class);
 		return userProfileDto;

@@ -14,7 +14,7 @@ public class ErrorController {
 
 	@RequestMapping(value = "404", method = RequestMethod.GET)
 	public String list(@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
-		// TODO:: always null
+		// TODO:: frontUserDetail is always null
 		if (!ObjectUtils.isEmpty(frontUserDetail)) {
 			model.addAttribute("email", frontUserDetail.getUsername());
 			model.addAttribute("name", frontUserDetail.getName());

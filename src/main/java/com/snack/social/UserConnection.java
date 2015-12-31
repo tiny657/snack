@@ -1,4 +1,4 @@
-package com.snack.user;
+package com.snack.social;
 
 import lombok.Getter;
 import lombok.Setter;

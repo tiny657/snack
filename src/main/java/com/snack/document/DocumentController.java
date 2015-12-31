@@ -1,13 +1,14 @@
 package com.snack.document;
 
 import com.snack.comment.Comment;
-import com.snack.skill.Skill;
-import com.snack.user.User;
 import com.snack.document.meta.DocumentSkillService;
+import com.snack.skill.Skill;
 import com.snack.skill.SkillService;
+import com.snack.social.ConnectionService;
+import com.snack.social.FrontUserDetail;
+import com.snack.user.User;
 import com.snack.user.UserService;
 import com.snack.user.UserSkillService;
-import com.snack.social.FrontUserDetail;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +43,16 @@ public class DocumentController {
 	@Autowired
 	private SkillService skillService;
 
+	@Autowired
+	ConnectionService connectionService;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
+		model.addAttribute("imageUrl", connectionService.getImageUrl());
+
 		if (!ObjectUtils.isEmpty(frontUserDetail)) {
 			model.addAttribute("email", frontUserDetail.getUsername());
 			model.addAttribute("name", frontUserDetail.getName());
-			model.addAttribute("imageUrl", frontUserDetail.getSocialUser());
 		}
 
 		List<Document> documents = documentService.findAll();
@@ -59,6 +64,7 @@ public class DocumentController {
 		List<Skill> skills = skillService.findAll();
 		model.addAttribute("documents", documents);
 		model.addAttribute("skills", skills);
+
 		return "list";
 	}
 

@@ -2,6 +2,7 @@ package com.snack.social;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,11 +27,7 @@ public class SocialUser implements Serializable {
 
 	public static SocialUser fromDto(UserProfileDto userProfileDto) {
 		SocialUser socialUser = new SocialUser();
-
-		socialUser.setLastName(userProfileDto.getLastName());
-		socialUser.setFirstName(userProfileDto.getFirstName());
-		socialUser.setEmail(userProfileDto.getEmail());
-
+		BeanUtils.copyProperties(userProfileDto, socialUser, SocialUser.class);
 		return socialUser;
 	}
 }
