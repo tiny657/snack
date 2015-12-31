@@ -1,5 +1,6 @@
-- 500 error page (login 사용자 표시 필요)
 - comment 달 때도 userId 자동으로 가져오게 하자.
+- comment 출력 시 enter 출력 안 됨.
+- 500 error page (login 사용자 표시 필요)
 - UserConnection는 under_scope로 바뀌면 안됨.
 - 한글 tab 에서 앞쪽으로 한글 넘어가는 이슈 있음
 - tabindex="3" 동작 안 하는 것 수정 필요

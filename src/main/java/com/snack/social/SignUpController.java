@@ -33,9 +33,6 @@ public class SignUpController {
 	@Autowired
 	ConnectionRepository connectionRepository;
 
-	@Autowired
-	private UserConnectionRepository userConnectionRepository;
-
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(WebRequest request, ModelMap modelMap) {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);

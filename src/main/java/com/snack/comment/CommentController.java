@@ -37,12 +37,7 @@ public class CommentController {
 		return "list";
 	}
 
-	//	@RequestMapping(value = "new", params = "form", method = RequestMethod.GET)
-	//	public String createForm(DocumentForm form) {
-	//		return "edit";
-	//	}
-
-	@RequestMapping(value = "{documentId}/new", method = RequestMethod.POST)
+	@RequestMapping(value = "{documentId}", method = RequestMethod.POST)
 	public String create(@PathVariable Integer documentId, @Validated CommentForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			// TODO:: 에러 처리 필요

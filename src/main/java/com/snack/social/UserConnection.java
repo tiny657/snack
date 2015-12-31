@@ -1,11 +1,5 @@
 package com.snack.social;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
-
-
 /*
 CREATE TABLE `UserConnection` (
   `userId` varchar(255) NOT NULL,
@@ -24,46 +18,46 @@ CREATE TABLE `UserConnection` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  */
 
-@Getter
-@Setter
-@Entity
-@IdClass(ProjectId.class)
-@Table(name = "UserConnection", uniqueConstraints = {
-	@UniqueConstraint(name = "UserConnectionRank", columnNames = { "userId", "providerId", "rank" }) })
-public class UserConnection {
-	@Id
-	@Column(nullable = false, name = "userId")
-	private String userId;
-
-	@Id
-	@Column(nullable = false, name = "providerId")
-	private String providerId;
-
-	@Id
-	@Column(nullable = false, name = "providerUserId", columnDefinition = "VARCHAR(255) DEFAULT ''")
-	private String providerUserId;
-
-	@Column(nullable = false)
-	private Integer rank;
-
-	@Column(nullable = false, name = "displayName")
-	private String displayName;
-
-	@Column(nullable = false, name = "profileUrl", length = 512)
-	private String profileUrl;
-
-	@Column(nullable = false, name = "imageUrl", length = 512)
-	private String imageUrl;
-
-	@Column(nullable = false, name = "accessToken", length = 512)
-	private String accessToken;
-
-	@Column(nullable = false, length = 512)
-	private String secret;
-
-	@Column(nullable = false, name = "refreshToken", length = 512)
-	private String refreshToken;
-
-	@Column(nullable = false, name = "expireTime")
-	private Long expireTime;
-}
+//@Getter
+//@Setter
+//@Entity
+//@IdClass(ProjectId.class)
+//@Table(name = "UserConnection", uniqueConstraints = {
+//	@UniqueConstraint(name = "UserConnectionRank", columnNames = { "userId", "providerId", "rank" }) })
+//public class UserConnection {
+//	@Id
+//	@Column(nullable = false, name = "userId")
+//	private String userId;
+//
+//	@Id
+//	@Column(nullable = false, name = "providerId")
+//	private String providerId;
+//
+//	@Id
+//	@Column(nullable = false, name = "providerUserId", columnDefinition = "VARCHAR(255) DEFAULT ''")
+//	private String providerUserId;
+//
+//	@Column(nullable = false)
+//	private Integer rank;
+//
+//	@Column(nullable = false, name = "displayName")
+//	private String displayName;
+//
+//	@Column(nullable = false, name = "profileUrl", length = 512)
+//	private String profileUrl;
+//
+//	@Column(nullable = false, name = "imageUrl", length = 512)
+//	private String imageUrl;
+//
+//	@Column(nullable = false, name = "accessToken", length = 512)
+//	private String accessToken;
+//
+//	@Column(nullable = false, length = 512)
+//	private String secret;
+//
+//	@Column(nullable = false, name = "refreshToken", length = 512)
+//	private String refreshToken;
+//
+//	@Column(nullable = false, name = "expireTime")
+//	private Long expireTime;
+//}

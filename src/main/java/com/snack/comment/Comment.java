@@ -41,6 +41,7 @@ public class Comment {
 		final String[] AM_PM = { "am", "pm" };
 		
 		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(regDate);
 		displayRegDate = new StringBuilder()
 			.append(MONTHS[calendar.get(Calendar.MONTH)]).append(" ")
 			.append(calendar.get(Calendar.DAY_OF_MONTH)).append(", ")
