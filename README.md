@@ -1,4 +1,3 @@
-- comment 달 때도 userId 자동으로 가져오게 하자.
 - comment 출력 시 enter 출력 안 됨.
 - 500 error page (login 사용자 표시 필요)
 - UserConnection는 under_scope로 바뀌면 안됨.

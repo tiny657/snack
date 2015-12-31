@@ -8,9 +8,6 @@ import javax.validation.constraints.Size;
 @Data
 public class CommentForm {
 	@NotNull
-	private String userId;
-
-	@NotNull
 	@Size(min = 1)
 	private String content;
 }

@@ -2,10 +2,12 @@ package com.snack.comment;
 
 import com.snack.document.Document;
 import com.snack.document.DocumentService;
+import com.snack.social.FrontUserDetail;
 import com.snack.user.User;
 import com.snack.user.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/comment")
@@ -30,18 +31,11 @@ public class CommentController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model) {
-		List<Comment> comments = commentService.findAll();
-		model.addAttribute("comments", comments);
-		return "list";
-	}
-
 	@RequestMapping(value = "{documentId}", method = RequestMethod.POST)
-	public String create(@PathVariable Integer documentId, @Validated CommentForm form, BindingResult result, Model model) {
+	public String create(@PathVariable Integer documentId, @Validated CommentForm form, BindingResult result,
+		@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
 		if (result.hasErrors()) {
-			// TODO:: 에러 처리 필요
-			return list(model);
+			return "redirect:/";
 		}
 		Document document = documentService.findOne(documentId);
 
@@ -49,7 +43,7 @@ public class CommentController {
 		BeanUtils.copyProperties(form, comment);
 		comment.setDocument(document);
 		comment.setRegDate(new Date());
-		User writer = userService.findOne(form.getUserId());
+		User writer = userService.findOne(frontUserDetail.getUsername());
 		comment.setWriter(writer);
 		commentService.create(comment);
 		return "redirect:/";
