@@ -65,9 +65,11 @@ public class DocumentController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Validated DocumentForm form, BindingResult result, @AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
 		if (result.hasErrors()) {
+			// TODO:: error popup
 			return "redirect:/";
 		}
 		if (frontUserDetail == null) {
+			// TODO:: error popup
 			return "redirect:/";
 		}
 

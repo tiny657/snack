@@ -1,9 +1,8 @@
-- header가 없는 것으로 변경 필요
-- 500 error page
+- 500 error page (login 사용자 표시 필요)
+- comment 달 때도 userId 자동으로 가져오게 하자.
 - UserConnection는 under_scope로 바뀌면 안됨.
 - 한글 tab 에서 앞쪽으로 한글 넘어가는 이슈 있음
 - tabindex="3" 동작 안 하는 것 수정 필요
-- header.hbs에 메뉴 분리
 - More 기능 추가
 - 로그인 안 하면 글 못 쓰게 하자.
 - imageUrl도 profile에 추가하자.
