@@ -154,19 +154,18 @@
 										<div class="post-block post-leave-comment">
 											<h3 class="heading-primary">Leave a comment</h3>
 
-											<form action="/comment/{{id}}" method="post">
+											<form action="/comment/{{id}}" accept-charset="UTF-8" method="POST">
 												<div class="row">
 													<div class="form-group">
 														<div class="col-md-12">
-															<label>Comment *</label>
-															<textarea maxlength="5000" rows="10" class="form-control" name="content"
-																	  id="content"></textarea>
+															<textarea data-plugin-markdown-editor rows="5" name="content"></textarea>
 														</div>
 													</div>
 												</div>
+
 												<div class="row">
 													<div class="col-md-12">
-														<input type="submit" value="Post Comment" class="btn btn-primary btn-lg"
+														<input type="submit" value="Post Comment" class="btn btn-primary btn-lg mb-xlg"
 															   data-loading-text="Loading...">
 													</div>
 												</div>
