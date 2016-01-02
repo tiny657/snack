@@ -3,7 +3,6 @@ package com.snack.document;
 import com.snack.document.meta.DocumentSkillService;
 import com.snack.skill.Skill;
 import com.snack.skill.SkillService;
-import com.snack.social.ConnectionService;
 import com.snack.social.FrontUserDetail;
 import com.snack.user.User;
 import com.snack.user.UserService;
@@ -41,9 +40,6 @@ public class DocumentController {
 
 	@Autowired
 	private SkillService skillService;
-
-	@Autowired
-	private ConnectionService connectionService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
