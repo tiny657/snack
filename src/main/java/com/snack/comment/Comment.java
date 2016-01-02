@@ -1,9 +1,11 @@
 package com.snack.comment;
 
+import com.github.rjeschke.txtmark.Processor;
 import com.snack.document.Document;
 import com.snack.user.User;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -28,6 +30,9 @@ public class Comment {
 	@Column(nullable = false)
 	private String content;
 
+	@Transient
+	private String htmlContent;
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate = new Date();
@@ -35,7 +40,16 @@ public class Comment {
 	@Transient
 	private String displayRegDate;
 
-	public void displayRegDate() {
+	public void convertToDisplay() {
+		htmlContent();
+		displayRegDate();
+	}
+
+	private void htmlContent() {
+		htmlContent = Processor.process(StringEscapeUtils.escapeHtml4(content));
+	}
+
+	private void displayRegDate() {
 		final String[] MONTHS = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November",
 			"December" };
 		final String[] AM_PM = { "am", "pm" };

@@ -95,11 +95,17 @@ public class Document {
 		skillCount++;
 	}
 
-	public void htmlContent() {
+	public void convertToDisplay() {
+		htmlContent();
+		displayRegDate();
+		comments.forEach(Comment::convertToDisplay);
+	}
+
+	private void htmlContent() {
 		htmlContent = Processor.process(StringEscapeUtils.escapeHtml4(content));
 	}
 
-	public void displayRegDate() {
+	private void displayRegDate() {
 		final String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(editDate);

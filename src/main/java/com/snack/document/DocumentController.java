@@ -1,6 +1,5 @@
 package com.snack.document;
 
-import com.snack.comment.Comment;
 import com.snack.document.meta.DocumentSkillService;
 import com.snack.skill.Skill;
 import com.snack.skill.SkillService;
@@ -44,7 +43,7 @@ public class DocumentController {
 	private SkillService skillService;
 
 	@Autowired
-	ConnectionService connectionService;
+	private ConnectionService connectionService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
@@ -56,11 +55,8 @@ public class DocumentController {
 		}
 
 		List<Document> documents = documentService.findAll();
-		for (Document document : documents) {
-			document.htmlContent();
-			document.displayRegDate();
-			document.getComments().forEach(Comment::displayRegDate);
-		}
+		documents.forEach(Document::convertToDisplay);
+
 		List<Skill> skills = skillService.findAll();
 		model.addAttribute("documents", documents);
 		model.addAttribute("skills", skills);
