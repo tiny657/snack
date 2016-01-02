@@ -47,9 +47,9 @@ public class DocumentController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
-		model.addAttribute("imageUrl", connectionService.getImageUrl());
-
 		if (!ObjectUtils.isEmpty(frontUserDetail)) {
+			User user = userService.findOne(frontUserDetail.getSocialUser().getEmail());
+			model.addAttribute("imageUrl", user.getImageUrl());
 			model.addAttribute("email", frontUserDetail.getUsername());
 			model.addAttribute("name", frontUserDetail.getName());
 		}

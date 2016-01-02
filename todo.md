@@ -1,4 +1,4 @@
-- Author에도 profile 출력하자.
+- Document Author에도 profile 출력하자.
 - 500 error page (login 사용자 표시 필요)
 - UserConnection는 under_scope로 바뀌면 안됨.
 - 한글 tab 에서 앞쪽으로 한글 넘어가는 이슈 있음

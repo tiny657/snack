@@ -26,6 +26,9 @@ public class User {
 	private String name;
 
 	@Column
+	private String imageUrl;
+
+	@Column
 	private String description;
 
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")

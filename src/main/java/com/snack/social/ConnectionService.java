@@ -9,15 +9,16 @@ import java.util.List;
 
 @Service
 public class ConnectionService {
-	@Autowired
-	ConnectionRepository connectionRepository;
 
-	public String getImageUrl() {
-		String imageUrl = null;
+	@Autowired
+	private ConnectionRepository connectionRepository;
+
+	public Connection<?> getConnection() {
+		Connection<?> connection = null;
 		List<Connection<?>> connections = connectionRepository.findConnections("facebook");
 		if (!connections.isEmpty()) {
-			imageUrl = connections.get(0).getImageUrl();
+			connection = connections.get(0);
 		}
-		return imageUrl;
+		return connection;
 	}
 }

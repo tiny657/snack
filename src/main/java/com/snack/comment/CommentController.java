@@ -35,6 +35,11 @@ public class CommentController {
 	public String create(@PathVariable Integer documentId, @Validated CommentForm form, BindingResult result,
 		@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
 		if (result.hasErrors()) {
+			// TODO:: error popup
+			return "redirect:/";
+		}
+		if (frontUserDetail == null) {
+			// TODO:: error popup
 			return "redirect:/";
 		}
 		Document document = documentService.findOne(documentId);
