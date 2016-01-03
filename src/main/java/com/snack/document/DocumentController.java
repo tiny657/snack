@@ -10,6 +10,7 @@ import com.snack.user.UserSkillService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,8 @@ public class DocumentController {
 	private SkillService skillService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(@AuthenticationPrincipal FrontUserDetail frontUserDetail, Model model) {
+	public String list(@RequestParam(required = false, defaultValue = "0") Integer from, @AuthenticationPrincipal FrontUserDetail frontUserDetail,
+		Model model) {
 		if (!ObjectUtils.isEmpty(frontUserDetail)) {
 			User user = userService.findOne(frontUserDetail.getSocialUser().getEmail());
 			model.addAttribute("imageUrl", user.getImageUrl());
@@ -50,14 +52,26 @@ public class DocumentController {
 			model.addAttribute("name", frontUserDetail.getName());
 		}
 
-		List<Document> documents = documentService.findAll();
+		Page<Document> documents = documentService.find(from);
 		documents.forEach(Document::convertToDisplay);
 
 		List<Skill> skills = skillService.findAll();
 		model.addAttribute("documents", documents);
 		model.addAttribute("skills", skills);
+		model.addAttribute("oldest", from + 1);
 
 		return "list";
+	}
+
+	@RequestMapping(value = "more", method = RequestMethod.GET)
+	public String more(@RequestParam(required = false, defaultValue = "0") Integer from, @AuthenticationPrincipal FrontUserDetail frontUserDetail,
+		Model model) {
+		Page<Document> documents = documentService.find(from);
+		documents.forEach(Document::convertToDisplay);
+		model.addAttribute("documents", documents);
+		model.addAttribute("oldest", from + 1);
+
+		return "documents";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

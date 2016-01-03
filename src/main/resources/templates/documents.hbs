@@ -1,0 +1,104 @@
+{{!document list}}
+{{#each documents}}
+	<article class="post post-large">
+		<div class="post-date">
+			<span class="day">{{day}}</span>
+			<span class="month">{{month}}</span>
+		</div>
+
+		<div class="post-content">
+			<h2><a href="blog-post.html">{{title}}</a></h2>
+
+			{{!Info}}
+			<div class="post-meta">
+				<span><i class="fa fa-user"></i> By <a href="#">{{author.name}}</a> </span>
+				<span><i class="fa fa-tag"></i>
+					{{#each skills}}
+						<a href="/skills/{{skill.name}}">{{skill.name}}</a>
+					{{/each}}
+				</span>
+				<span><i class="fa fa-comments"></i> <a href="#">{{commentCount}} Comments</a></span>
+			</div>
+
+			<p>{{{htmlContent}}}</p>
+
+			{{!More}}
+			<section class="panel">
+				<header class="panel-heading panel-heading-transparent">
+					<div class="most-meta">
+						<a href="#" class="btn btn-xs btn-primary pull-right" data-panel-toggle>Read more...</a>
+					</div>
+				</header>
+
+				<div class="panel-body">
+					{{!Author}}
+					<div class="post-block post-author clearfix">
+						<h3 class="heading-primary"><i class="fa fa-user"></i>Author</h3>
+
+						<div class="img-thumbnail">
+							<a href="blog-post.html">
+								<img src="{{author.imageUrl}}">
+							</a>
+						</div>
+						<p><strong class="name"><a href="#">{{author.name}}</a></strong></p>
+
+						<p>{{author.description}}</p>
+					</div>
+
+					{{!comments}}
+					{{#if comments}}
+						<div class="post-block post-comments clearfix">
+							<h3 class="heading-primary"><i class="fa fa-comments"></i>Comments ({{commentCount}})</h3>
+
+							<ul class="comments">
+								{{#each comments}}
+									<li>
+										<div class="comment">
+											<div class="img-thumbnail">
+												<img class="avatar" src="{{writer.imageUrl}}">
+											</div>
+											<div class="comment-block">
+												<div class="comment-arrow"></div>
+												<span class="comment-by">
+													<strong>{{writer.name}}</strong>
+												</span>
+												<p>{{{htmlContent}}}</p>
+												<span class="date pull-right">{{displayRegDate}}</span>
+											</div>
+										</div>
+									</li>
+								{{/each}}
+							</ul>
+						</div>
+					{{/if}}
+
+					{{!comment form}}
+					<div class="post-block post-leave-comment">
+						<h3 class="heading-primary">Leave a comment</h3>
+
+						<form action="/comment/{{id}}" accept-charset="UTF-8" method="POST">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<textarea data-plugin-markdown-editor rows="5" name="content"></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<input type="submit" value="Post Comment" class="btn btn-primary btn-lg mb-xlg"
+										   data-loading-text="Loading...">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</article>
+{{/each}}
+
+<div id="more">
+	<span id="oldest" style="display: none;">{{oldest}}</span>
+</div>

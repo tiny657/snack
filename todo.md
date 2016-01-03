@@ -1,5 +1,4 @@
-- Document list에 한 번에 표시되는 document 갯수 제한
-- 마지막에 도달했을 때 More 기능 추가
+- more 기능 테스트
 - profile 사진 크기 확인 필요 (50*50)
 - 로그인 안 하면 글 못 쓰게 하자.
 - Document에 글 숨기기 기능 추가

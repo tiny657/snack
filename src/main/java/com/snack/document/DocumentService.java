@@ -1,23 +1,25 @@
 package com.snack.document;
 
-import com.snack.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
 public class DocumentService {
-	@Autowired
-	UserRepository userRepository;
 
 	@Autowired
-	DocumentRepository documentRepository;
+	private DocumentRepository documentRepository;
 
-	public List<Document> findAll() {
-		return documentRepository.findByOrderByIdDesc();
+	private static final int SIZE = 2;
+
+	public Page<Document> find(int from) {
+		Pageable pageable = new PageRequest(from, SIZE, Sort.Direction.DESC, "id");
+		return documentRepository.findAll(pageable);
 	}
 
 	public Document findOne(Integer id) {
@@ -39,5 +41,9 @@ public class DocumentService {
 
 	public void deleteAll() {
 		documentRepository.deleteAll();
+	}
+
+	public int size() {
+		return SIZE;
 	}
 }
