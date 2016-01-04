@@ -42,6 +42,9 @@ public class InitializeRepositoryTest {
 	DocumentViewerService documentViewerService;
 
 	@Autowired
+	DocumentSharerService documentSharerService;
+
+	@Autowired
 	NotificationRepository notificationRepository;
 
 	@Autowired
@@ -87,6 +90,7 @@ public class InitializeRepositoryTest {
 		skillOwnerRepository.deleteAll();
 		userSkillRepository.deleteAll();
 		documentKeeperService.deleteAll();
+		documentSharerService.deleteAll();
 		commentService.deleteAll();
 		documentService.deleteAll();
 		skillRepository.deleteAll();
@@ -105,6 +109,7 @@ public class InitializeRepositoryTest {
 		skillOwnerRepository.deleteAll();
 		userSkillRepository.deleteAll();
 		documentKeeperService.deleteAll();
+		documentSharerService.deleteAll();
 		commentService.deleteAll();
 		documentService.deleteAll();
 		skillRepository.deleteAll();

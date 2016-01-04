@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class DocumentViewerService {
 	@Autowired
-	DocumentViewerRepository documentViewerRepository;
+	private DocumentViewerRepository documentViewerRepository;
 
 	public List<DocumentViewer> findAll() {
 		return documentViewerRepository.findAll();

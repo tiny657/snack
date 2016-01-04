@@ -58,6 +58,9 @@ public class User {
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer myKeepCount = 0;
 
+	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+	private Integer myShareCount = 0;
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<SkillOwner> mySkills = Lists.newArrayList();
 
@@ -85,5 +88,9 @@ public class User {
 
 	public void increaseMyKeepCount() {
 		myKeepCount++;
+	}
+
+	public void increaseMyShareCount() {
+		myShareCount++;
 	}
 }

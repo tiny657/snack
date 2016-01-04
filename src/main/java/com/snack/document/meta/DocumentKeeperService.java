@@ -10,7 +10,7 @@ import java.util.List;
 @Transactional
 public class DocumentKeeperService {
 	@Autowired
-	DocumentKeeperRepository documentKeeperRepository;
+	private DocumentKeeperRepository documentKeeperRepository;
 
 	public List<DocumentKeeper> findAll() {
 		return documentKeeperRepository.findAll();

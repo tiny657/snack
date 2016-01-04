@@ -4,6 +4,7 @@ import com.github.rjeschke.txtmark.Processor;
 import com.google.common.collect.Lists;
 import com.snack.comment.Comment;
 import com.snack.document.meta.DocumentKeeper;
+import com.snack.document.meta.DocumentSharer;
 import com.snack.document.meta.DocumentSkill;
 import com.snack.document.meta.DocumentViewer;
 import com.snack.user.User;
@@ -79,6 +80,12 @@ public class Document {
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
 	private Integer skillCount = 0;
 
+	@OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
+	private List<DocumentSharer> sharers = Lists.newArrayList();
+
+	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+	private Integer sharerCount = 0;
+
 	public void increaseCommentCount() {
 		commentCount++;
 	}
@@ -90,9 +97,12 @@ public class Document {
 	public void increaseViewerCount() {
 		viewerCount++;
 	}
-
 	public void increaseSkillCount() {
 		skillCount++;
+	}
+
+	public void increaseShareCount() {
+		sharerCount++;
 	}
 
 	public void convertToDisplay() {

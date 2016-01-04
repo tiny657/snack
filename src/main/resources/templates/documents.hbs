@@ -19,7 +19,7 @@
 				</span>
 				<span><i class="fa fa-folder-open"></i> <a href="#">{{viewerCount}}</a> </span>
 				<span><i class="fa fa-bookmark"></i> <a href="#">{{keeperCount}}</a> </span>
-				<span><i class="fa fa-facebook-official"></i> <a href="#">{{sharedCount}}</a> </span>
+				<span><i class="fa fa-facebook-official"></i> <a href="#">{{sharerCount}}</a> </span>
 				<span><i class="fa fa-comments"></i> <a href="#">{{commentCount}} </a></span>
 			</div>
 
@@ -34,6 +34,12 @@
 				</header>
 
 				<div class="panel-body">
+					{{!Share}}
+					<div class="post-block post-share">
+						{{!TODO: document별 list 필요}}
+						<h3 class="heading-primary"><a href="https://www.facebook.com/sharer/sharer.php?u=test.com"><i class="fa fa-share"></i>Share this post</a></h3>
+					</div>
+
 					{{!Author}}
 					<div class="post-block post-author clearfix">
 						<h3 class="heading-primary"><i class="fa fa-user"></i>Author</h3>

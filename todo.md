@@ -1,4 +1,4 @@
-- list에 View, Keep, Share 수 출력
+- 사진 첨부 기능 추가
 - author 클릭 시 user profile로 이동하도록 수정
 - 중간에 more로 받은 것은 javascript이 동작하지 않음
 - share하고 중간부터 볼 수 있도록 url 생성 필요

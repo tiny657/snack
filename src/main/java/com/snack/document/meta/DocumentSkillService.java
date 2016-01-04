@@ -1,9 +1,7 @@
 package com.snack.document.meta;
 
 import com.snack.document.Document;
-import com.snack.document.meta.DocumentSkill;
 import com.snack.skill.Skill;
-import com.snack.document.meta.DocumentSkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +12,7 @@ import java.util.List;
 @Transactional
 public class DocumentSkillService {
 	@Autowired
-	DocumentSkillRepository documentSkillRepository;
+	private DocumentSkillRepository documentSkillRepository;
 
 	public List<DocumentSkill> findAll() {
 		return documentSkillRepository.findAll();
