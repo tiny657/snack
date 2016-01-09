@@ -10,7 +10,6 @@ import com.snack.document.meta.DocumentViewer;
 import com.snack.user.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -112,7 +111,7 @@ public class Document {
 	}
 
 	private void htmlContent() {
-		htmlContent = Processor.process(StringEscapeUtils.escapeHtml4(content));
+		htmlContent = Processor.process(Utils.escape(content));
 	}
 
 	private void displayRegDate() {
