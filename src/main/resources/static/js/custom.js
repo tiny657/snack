@@ -1,3 +1,9 @@
+function fbShare(url) {
+	var winTop = (screen.height / 2) - (350 / 2);
+	var winLeft = (screen.width / 2) - (520 / 2);
+	window.open('http://www.facebook.com/sharer.php?s=100&&p[url]=' + url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=520,height=350');
+}
+
 function isMorePosition() {
 	if ($("#more").length > 0) {
 		$(window).scroll(function() {

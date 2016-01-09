@@ -1,4 +1,3 @@
-- share 할 때 새로운 창을 띄워서 하자.
 - 사진 첨부 기능 추가
 - author 클릭 시 user profile로 이동하도록 수정
 - 중간에 more로 받은 것은 javascript이 동작하지 않음
