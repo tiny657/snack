@@ -2,10 +2,10 @@ package com.snack.comment;
 
 import com.github.rjeschke.txtmark.Processor;
 import com.snack.document.Document;
+import com.snack.document.Utils;
 import com.snack.user.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -46,7 +46,7 @@ public class Comment {
 	}
 
 	private void htmlContent() {
-		htmlContent = Processor.process(StringEscapeUtils.escapeHtml4(content));
+		htmlContent = Processor.process(Utils.escape(content));
 	}
 
 	private void displayRegDate() {

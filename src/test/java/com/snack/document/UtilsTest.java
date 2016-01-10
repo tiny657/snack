@@ -19,7 +19,7 @@ public class UtilsTest {
 		String es3 = Utils.escape(s3);
 		String es4 = Utils.escape(s4);
 
-//		 Then
+		// Then
 		assertThat(es1).isEqualTo("[enter](http://aa)");
 		assertThat(es2).isEqualTo("![enter](http://aa \"enter image title here\")");
 		assertThat(es3).isEqualTo("> 1234");
