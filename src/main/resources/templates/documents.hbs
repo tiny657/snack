@@ -109,6 +109,8 @@
 	</article>
 {{/each}}
 
-<div id="more">
-	<span id="oldest" style="display: none;">{{oldest}}</span>
-</div>
+{{#if oldest}}
+	<div id="more">
+		<span id="oldest" style="display: none;">{{oldest}}</span>
+	</div>
+{{/if}}

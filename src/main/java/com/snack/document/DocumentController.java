@@ -69,7 +69,9 @@ public class DocumentController {
 		Page<Document> documents = documentService.find(from);
 		documents.forEach(Document::convertToDisplay);
 		model.addAttribute("documents", documents);
-		model.addAttribute("oldest", from + 1);
+		if (documents.getTotalPages() > from) {
+			model.addAttribute("oldest", from + 1);
+		}
 
 		return "documents";
 	}
