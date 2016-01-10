@@ -11,7 +11,7 @@
 
 			{{!Info}}
 			<div class="post-meta">
-				<span><i class="fa fa-user"></i> <a href="#">{{author.name}}</a> </span>
+				<span><i class="fa fa-user"></i> <a href="/users/{{author.userId}}">{{author.name}}</a> </span>
 				<span><i class="fa fa-tag"></i>
 					{{#each skills}}
 						<a href="/skills/{{skill.name}}">{{skill.name}}</a>
@@ -50,7 +50,7 @@
 								<img src="{{author.imageUrl}}">
 							</a>
 						</div>
-						<p><strong class="name"><a href="#">{{author.name}}</a></strong></p>
+						<p><strong class="name"><a href="/users/{{author.userId}}">{{author.name}}</a></strong></p>
 
 						<p>{{author.description}}</p>
 					</div>

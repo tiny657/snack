@@ -1,11 +1,12 @@
+- comment, share, keep 에서 tooltip 표시하도록 하자.
 - 사진 첨부 기능 추가
-- author 클릭 시 user profile로 이동하도록 수정
 - 중간에 more로 받은 것은 javascript이 동작하지 않음
 - share하고 중간부터 볼 수 있도록 url 생성 필요
 - profile 사진 크기 확인 필요 (50*50)
 - 로그인 안 하면 글 못 쓰게 하자.
 - Document에 글 숨기기 기능 추가
 - 500 error page (login 사용자 표시 필요)
+- 404 error page 표시 시 css 깨지는 현상 있음
 - UserConnection는 under_scope로 바뀌면 안됨.
 - 한글 tab 에서 앞쪽으로 한글 넘어가는 이슈 있음
 - tabindex="3" 동작 안 하는 것 수정 필요
