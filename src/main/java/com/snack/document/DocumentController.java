@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,6 +62,26 @@ public class DocumentController {
 		model.addAttribute("oldest", from + 1);
 
 		return "list";
+	}
+
+	@RequestMapping(value = "documents/{id}", method = RequestMethod.GET)
+	public String document(@PathVariable Integer id, @AuthenticationPrincipal FrontUserDetail frontUserDetail,
+		Model model) {
+		if (!ObjectUtils.isEmpty(frontUserDetail)) {
+			User user = userService.findOne(frontUserDetail.getSocialUser().getEmail());
+			model.addAttribute("imageUrl", user.getImageUrl());
+			model.addAttribute("email", frontUserDetail.getUsername());
+			model.addAttribute("name", frontUserDetail.getName());
+		}
+
+		Document document = documentService.findOne(id);
+		document.convertToDisplay();
+
+		List<Skill> skills = skillService.findAll();
+		model.addAttribute("document", document);
+		model.addAttribute("skills", skills);
+
+		return "document";
 	}
 
 	@RequestMapping(value = "more", method = RequestMethod.GET)
