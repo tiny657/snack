@@ -1,3 +1,7 @@
+- comment 달고, redirect 시 document one 페이지로 redirect 하자.
+- login 후 원래 페이지로 redirect 하자.
+- document.hbs와 documents.hbs의 공통 부분을 추출하자.
+
 - markdown preview 동시에 보이는 모드로 변경하자.
 - comment, share, keep 에서 tooltip 표시하도록 하자.
 - 사진 첨부 기능 추가
