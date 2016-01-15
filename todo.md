@@ -2,7 +2,6 @@
 - document.hbs와 documents.hbs의 공통 부분을 추출하자.
 
 - markdown preview 동시에 보이는 모드로 변경하자.
-- comment, share, keep 에서 tooltip 표시하도록 하자.
 - 사진 첨부 기능 추가
 - 중간에 more로 받은 것은 javascript이 동작하지 않음
 - profile 사진 크기 확인 필요 (50*50)

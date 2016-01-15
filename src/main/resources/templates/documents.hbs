@@ -14,13 +14,13 @@
 				<span><i class="fa fa-user"></i> <a href="/users/{{author.userId}}">{{author.name}}</a> </span>
 				<span><i class="fa fa-tag"></i>
 					{{#each skills}}
-						<a href="/skills/{{skill.name}}">{{skill.name}}</a>
+						<a data-plugin-tooltip href="/skills/{{skill.name}}" data-original-title="skill">{{skill.name}}</a>
 					{{/each}}
 				</span>
-				<span><i class="fa fa-folder-open"></i> <a href="#">{{viewerCount}}</a> </span>
-				<span><i class="fa fa-bookmark"></i> <a href="#">{{keeperCount}}</a> </span>
-				<span><i class="fa fa-facebook-official"></i> <a href="#">{{sharerCount}}</a> </span>
-				<span><i class="fa fa-comments"></i> <a href="#">{{commentCount}} </a></span>
+				<span><i class="fa fa-folder-open"></i> <a data-plugin-tooltip href="#" data-original-title="read">{{viewerCount}}</a> </span>
+				<span><i class="fa fa-bookmark"></i> <a data-plugin-tooltip href="#" data-original-title="keep">{{keeperCount}}</a> </span>
+				<span><i class="fa fa-facebook-official"></i> <a data-plugin-tooltip href="#" data-original-title="share">{{sharerCount}}</a> </span>
+				<span><i class="fa fa-comments"></i> <a data-plugin-tooltip href="#" data-original-title="comment">{{commentCount}} </a></span>
 			</div>
 
 			<p>{{{htmlContent}}}</p>

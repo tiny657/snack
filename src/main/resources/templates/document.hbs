@@ -40,14 +40,14 @@
 								<div class="post-meta">
 									<span><i class="fa fa-user"></i> <a href="/users/{{document.author.userId}}">{{document.author.name}}</a> </span>
 									<span><i class="fa fa-tag"></i>
-										{{#each skills}}
-											<a href="/skills/{{skill.name}}">{{skill.name}}</a>
+										{{#each document.skills}}
+											<a data-plugin-tooltip href="/skills/{{skill.name}}" data-original-title="skill">{{skill.name}}</a>
 										{{/each}}
 									</span>
-									<span><i class="fa fa-folder-open"></i> <a href="#">{{document.viewerCount}}</a> </span>
-									<span><i class="fa fa-bookmark"></i> <a href="#">{{document.keeperCount}}</a> </span>
-									<span><i class="fa fa-facebook-official"></i> <a href="#">{{document.sharerCount}}</a> </span>
-									<span><i class="fa fa-comments"></i> <a href="#">{{document.commentCount}} </a></span>
+									<span><i class="fa fa-folder-open"></i> <a data-plugin-tooltip href="#" data-original-title="read">{{document.viewerCount}}</a> </span>
+									<span><i class="fa fa-bookmark"></i> <a data-plugin-tooltip href="#" data-original-title="keep">{{document.keeperCount}}</a> </span>
+									<span><i class="fa fa-facebook-official"></i> <a data-plugin-tooltip href="#" data-original-title="share">{{document.sharerCount}}</a> </span>
+									<span><i class="fa fa-comments"></i> <a data-plugin-tooltip href="#" data-original-title="comment">{{document.commentCount}} </a></span>
 								</div>
 
 								<p>{{{document.htmlContent}}}</p>
