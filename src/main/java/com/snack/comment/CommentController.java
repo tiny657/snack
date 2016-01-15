@@ -34,7 +34,7 @@ public class CommentController {
 	public String create(@PathVariable Integer documentId, @Validated CommentForm form, BindingResult result,
 		@AuthenticationPrincipal FrontUserDetail frontUserDetail, @RequestHeader(value = "referer", required = false) String referer) {
 		if (result.hasErrors()) {
-			// TODO:: error popup
+			log.info(result.toString());
 			return "redirect:/";
 		}
 		if (frontUserDetail == null) {

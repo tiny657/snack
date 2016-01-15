@@ -7,6 +7,7 @@ import com.snack.social.FrontUserDetail;
 import com.snack.user.User;
 import com.snack.user.UserService;
 import com.snack.user.UserSkillService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/")
 public class DocumentController {
@@ -100,6 +102,7 @@ public class DocumentController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Validated DocumentForm form, BindingResult result, @AuthenticationPrincipal FrontUserDetail frontUserDetail) {
 		if (result.hasErrors()) {
+			log.info(result.toString());
 			// TODO:: error popup
 			return "redirect:/";
 		}
