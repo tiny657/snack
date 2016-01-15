@@ -12,7 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Component
-public class PathUrlLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
+public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)

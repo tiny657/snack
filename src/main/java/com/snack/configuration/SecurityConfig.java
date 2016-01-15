@@ -1,6 +1,6 @@
 package com.snack.configuration;
 
-import com.snack.social.PathUrlLogoutSuccessHandler;
+import com.snack.social.LogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,22 +25,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 
 	@Autowired
-	PathUrlLogoutSuccessHandler logoutSuccessHandler;
+	private LogoutSuccessHandler logoutSuccessHandler;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		http
 			.csrf()
 			.disable().anonymous()
 			.and()
-			.formLogin().loginPage("/login")
-			.defaultSuccessUrl("/", true)
+			.formLogin()
+			.defaultSuccessUrl("/")
 			.loginProcessingUrl("/login/authenticate")
 			.and()
 			.logout()
 			.deleteCookies("SESSION")
 			.logoutUrl("/logout")
-			.logoutSuccessUrl("/")
 			.and()
 			.apply(new SpringSocialConfigurer());
 
