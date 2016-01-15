@@ -1,4 +1,3 @@
-- comment 달고, redirect 시 document one 페이지로 redirect 하자.
 - login 후 원래 페이지로 redirect 하자.
 - document.hbs와 documents.hbs의 공통 부분을 추출하자.
 
