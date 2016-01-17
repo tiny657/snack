@@ -12,6 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +24,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
@@ -44,6 +49,12 @@ public class DocumentController {
 
 	@Autowired
 	private SkillService skillService;
+
+	@Autowired
+	private AttachedFileService attachedFileService;
+
+	@Autowired
+	private FileWriter fileWriter;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(@RequestParam(required = false, defaultValue = "0") Integer from, @AuthenticationPrincipal FrontUserDetail frontUserDetail,
@@ -103,11 +114,10 @@ public class DocumentController {
 	public String create(@Validated DocumentForm form, BindingResult result, @AuthenticationPrincipal FrontUserDetail frontUserDetail) {
 		if (result.hasErrors()) {
 			log.info(result.toString());
-			// TODO:: error popup
 			return "redirect:/";
 		}
 		if (frontUserDetail == null) {
-			// TODO:: error popup
+			log.info("frontUserDetail is null. " + result.toString());
 			return "redirect:/";
 		}
 
@@ -133,14 +143,38 @@ public class DocumentController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "edit", params = "goToTop")
-	public String goToTop() {
-		return "redirect:/";
+	@RequestMapping(value = "/attach", method = RequestMethod.POST)
+	public ResponseEntity attach(MultipartHttpServletRequest request) {
+		try {
+			Iterator<String> iterator = request.getFileNames();
+
+			while (iterator.hasNext()) {
+				final String PATH = "attach";
+				String uploadedFile = iterator.next();
+				MultipartFile file = request.getFile(uploadedFile);
+				AttachedFile dto = new AttachedFile();
+				dto.setRegDate(new Date());
+				dto.setFilename(file.getOriginalFilename());
+				dto.setMimeType(file.getContentType());
+				fileWriter.writeFile(file, PATH, dto.getFilename());
+				attachedFileService.upload(dto);
+			}
+		}
+		catch (Exception e) {
+			return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<>("{}", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String delete(@RequestParam Integer id) {
 		documentService.delete(id);
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "edit", params = "goToTop")
+	public String goToTop() {
 		return "redirect:/";
 	}
 }

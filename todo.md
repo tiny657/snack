@@ -1,8 +1,12 @@
+- 사진 첨부 기능 추가
+	- filename을 unique 하게 변경 필요
+	- drag & drop할 때 마다 일괄 업로드 필요
+	- 파일로 저장할 때 경로는 어떻게 하지?
+
 - login 후 원래 페이지로 redirect 하자.
 - document.hbs와 documents.hbs의 공통 부분을 추출하자.
 
 - markdown preview 동시에 보이는 모드로 변경하자.
-- 사진 첨부 기능 추가
 - 중간에 more로 받은 것은 javascript이 동작하지 않음
 - profile 사진 크기 확인 필요 (50*50)
 - Document에 글 숨기기 기능 추가

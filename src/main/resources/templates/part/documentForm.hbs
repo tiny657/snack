@@ -4,7 +4,7 @@
 		<h3 class="heading-primary">New Document</h3>
 
 		{{#if name}}
-			<form id="documentForm" name="documentForm" accept-charset="UTF-8" method="POST">
+			<form id="documentForm" name="documentForm" accept-charset="UTF-8" method="POST" >
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-12">
@@ -40,6 +40,8 @@
 					</div>
 				</div>
 			</form>
+
+			<form action="/attach" class="dropzone dz-square" id="dropzone-example"></form>
 		{{/if}}
 
 		{{#unless name}}
