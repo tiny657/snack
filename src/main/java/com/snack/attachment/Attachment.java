@@ -1,4 +1,4 @@
-package com.snack.document;
+package com.snack.attachment;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class AttachedFile {
+public class Attachment {
 	@Id
 	@GeneratedValue
 	private Integer id;

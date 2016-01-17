@@ -1,7 +1,7 @@
 - 사진 첨부 기능 추가
 	- filename을 unique 하게 변경 필요
 	- drag & drop할 때 마다 일괄 업로드 필요
-	- 파일로 저장할 때 경로는 어떻게 하지?
+	- read controller 만들어야 하나?
 
 - login 후 원래 페이지로 redirect 하자.
 - document.hbs와 documents.hbs의 공통 부분을 추출하자.

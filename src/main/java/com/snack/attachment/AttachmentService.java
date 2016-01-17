@@ -1,22 +1,22 @@
-package com.snack.document;
+package com.snack.attachment;
 
 import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AttachedFileService {
+public class AttachmentService {
 
 	@Autowired
-	private AttachedFileRepository attachedFileRepository;
+	private AttachmentRepository attachmentRepository;
 
 	// Retrieve file
 	public FileUpload findByFilename(String filename) {
-		return attachedFileRepository.findByFilename(filename);
+		return attachmentRepository.findByFilename(filename);
 	}
 
 	// Upload the file
-	public void upload(AttachedFile attachedFile) {
-		attachedFileRepository.saveAndFlush(attachedFile);
+	public void upload(Attachment attachment) {
+		attachmentRepository.saveAndFlush(attachment);
 	}
 }
