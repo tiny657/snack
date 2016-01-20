@@ -1,4 +1,4 @@
-package com.snack.document;
+package com.snack.attachment;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;

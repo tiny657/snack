@@ -1,3 +1,33 @@
+(function ($, undefined) {
+	$.fn.getCursorPosition = function () {
+		var el = $(this).get(0);
+		var pos = 0;
+		if ('selectionStart' in el) {
+			pos = el.selectionStart;
+		} else if ('selection' in document) {
+			el.focus();
+			var Sel = document.selection.createRange();
+			var SelLength = document.selection.createRange().text.length;
+			Sel.moveStart('character', -el.value.length);
+			pos = Sel.text.length - SelLength;
+		}
+		return pos;
+	}
+})(jQuery);
+
+Dropzone.options.myDropzone = {
+	success: function(file, response){
+		var position = $("#content").getCursorPosition()
+		var content = $('#content').val();
+		var newContent = content.substr(0, position) + response.toString() + content.substr(position);
+		$('#content').val(newContent);
+
+		//$("#content").val(response.toString());
+		console.log(newContent);
+	}
+};
+
+
 function fbShare(url) {
 	var winTop = (screen.height / 2) - (350 / 2);
 	var winLeft = (screen.width / 2) - (520 / 2);

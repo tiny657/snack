@@ -1,6 +1,5 @@
 package com.snack.attachment;
 
-import com.snack.document.AttachmentUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +20,9 @@ import java.util.Iterator;
 @RequestMapping("/attach")
 public class AttachmentController {
 
+	// TODO:: properties로 이동
+	final String URL = "http://test.com:8080/attach/";
+
 	@Autowired
 	private AttachmentService attachmentService;
 
@@ -34,6 +36,7 @@ public class AttachmentController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity attach(MultipartHttpServletRequest request) {
+		StringBuilder response = new StringBuilder();
 		try {
 			Iterator<String> iterator = request.getFileNames();
 
@@ -46,12 +49,23 @@ public class AttachmentController {
 				dto.setRegDate(new Date());
 				dto = attachmentService.save(dto);
 				attachmentUtils.write(file, dto.getFilename(), dto.getId());
+				response = makeURL(file.getOriginalFilename(), URL, dto.getId());
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return new ResponseEntity<>("{}", HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	private StringBuilder makeURL(String filename, String URL, Integer id) {
+		StringBuilder response = new StringBuilder();
+		response.append("![")
+			.append(filename)
+			.append("](")
+			.append(URL)
+			.append(id)
+			.append(")");
+		return response;
 	}
 }
