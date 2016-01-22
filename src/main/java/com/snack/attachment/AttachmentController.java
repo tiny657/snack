@@ -1,6 +1,7 @@
 package com.snack.attachment;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,7 @@ public class AttachmentController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity attach(MultipartHttpServletRequest request) {
+
 		StringBuilder response = new StringBuilder();
 		try {
 			Iterator<String> iterator = request.getFileNames();
@@ -43,6 +45,9 @@ public class AttachmentController {
 			while (iterator.hasNext()) {
 				String uploadedFile = iterator.next();
 				MultipartFile file = request.getFile(uploadedFile);
+				if (!StringUtils.startsWith(file.getContentType(), "image/")) {
+					return new ResponseEntity<>("{}", HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+				}
 				Attachment dto = new Attachment();
 				dto.setFilename(file.getOriginalFilename());
 				dto.setMimeType(file.getContentType());

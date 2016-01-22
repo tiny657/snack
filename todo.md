@@ -1,5 +1,6 @@
 - 기능 구현
-	- image가 아닌 다운로드 가능한 파일이라면 어떻게 처리 해야 할까?
+	- upload한 이미지 삭제하기 (클릭하면 삭제하게 안 되나?)
+	- upload한 파일이 image이 아닌 경우 alert가 아닌 layer 경고창으로 바꾸자.
 	- image link에서 팝업이 아닌 layer로 변경하자.
 	- post document 버튼과 Drop file의 위치를 바꾸자.
 

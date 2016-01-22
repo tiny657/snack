@@ -16,17 +16,23 @@
 })(jQuery);
 
 Dropzone.options.myDropzone = {
-	success: function(file, response){
+	acceptedFiles: "image/*",
+	addRemoveLinks: true,
+	dictRemoveFile: "Remove",
+
+	success: function (file, response) {
 		var position = $("#content").getCursorPosition()
 		var content = $('#content').val();
 		var newContent = content.substr(0, position) + response.toString() + content.substr(position);
 		$('#content').val(newContent);
 
-		//$("#content").val(response.toString());
 		console.log(newContent);
+	},
+	error: function (file, response) {
+		this.removeFile(file);
+		alert("Attached file isn't image file.");
 	}
-};
-
+}
 
 function fbShare(url) {
 	var winTop = (screen.height / 2) - (350 / 2);
@@ -36,7 +42,7 @@ function fbShare(url) {
 
 function isMorePosition() {
 	if ($("#more").length > 0) {
-		$(window).scroll(function() {
+		$(window).scroll(function () {
 			if ($(window).scrollTop() + $(window).height() > $(document).height() - 10) {
 				$(window).unbind('scroll');
 				more();
@@ -47,11 +53,11 @@ function isMorePosition() {
 
 function more() {
 	$.ajax({
-		type : "GET",
-		url : "/more",
+		type: "GET",
+		url: "/more",
 		dataType: "text",
 		data: {"from": $("#oldest").text()},
-		success : function(content) {
+		success: function (content) {
 			$("#more").replaceWith(content);
 			isMorePosition();
 		}
