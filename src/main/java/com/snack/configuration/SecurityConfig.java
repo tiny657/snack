@@ -35,14 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.disable().anonymous()
 			.and()
 			.formLogin()
-			.defaultSuccessUrl("/")
 			.loginProcessingUrl("/login/authenticate")
 			.and()
 			.logout()
 			.deleteCookies("SESSION")
 			.logoutUrl("/logout")
 			.and()
-			.apply(new SpringSocialConfigurer());
+			.apply(new SpringSocialConfigurer().postLoginUrl("/signin"));
 
 		http.logout().logoutSuccessHandler(logoutSuccessHandler);
 	}

@@ -1,11 +1,13 @@
-- 기능 구현
+- Markdown Editor
+	- Preview가 동시에 가능한 Editor로 변경하자.
+
+- Document Form
 	- upload한 이미지 삭제하기 (클릭하면 삭제하게 안 되나?)
 	- upload한 파일이 image이 아닌 경우 alert가 아닌 layer 경고창으로 바꾸자.
 	- image link에서 팝업이 아닌 layer로 변경하자.
 	- post document 버튼과 Drop file의 위치를 바꾸자.
 
 - 버그
-	- login 후 원래 페이지로 redirect 하자.
 	- document.hbs와 documents.hbs의 공통 부분을 추출하자.
 	- markdown preview 동시에 보이는 모드로 변경하자.
 	- 중간에 more로 받은 것은 javascript이 동작하지 않음
